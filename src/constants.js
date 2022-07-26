@@ -1,0 +1,1 @@
+export const COMMERCE_PUB_API =  process.env.REACT_APP_COMMERCE_PUB_API
