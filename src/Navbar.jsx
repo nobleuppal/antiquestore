@@ -1,7 +1,7 @@
 import React from "react";
 import shoppingCart from './assets/shopping-cart-solid.svg';
 
-const Navbar = () => {
+const Navbar = ({filterContainer}) => {
 
     const navStyle = {
         display: 'flex', 
@@ -21,17 +21,23 @@ const Navbar = () => {
         paddingTop:'1rem',
     } 
 
+    const buttonStyle = {
+        backgroundColor: 'transparent',
+        border: 'none',
+        fontSize: '1.5rem',
+    }
+
     return(
         <div style={navStyle}>
             <div style={{marginRight: '0rem'}}>
                 <div>Sign up/Log in</div>
             </div>
             <div style={itemStyle}>
-                <div>Watches</div>
-                <div>Clocks</div>
-                <div>Necklaces</div>
-                <div>Shoes</div>
-                <div>Instruments</div>
+                <button style={buttonStyle} type="button" value="Watches" onClick={filterContainer}>Watches</button>
+                <button style={buttonStyle} type="button" value="Clocks" onClick={filterContainer}>Clocks</button>
+                <button style={buttonStyle} type="button" value="Necklaces" onClick={filterContainer}>Necklaces</button>
+                <button style={buttonStyle} type="button" value="Shoes" onClick={filterContainer}>Shoes</button>
+                <button style={buttonStyle} type="button" value="Instruments" onClick={filterContainer}>Instruments</button>
                 <input style={{borderRadius: '0.25rem', border: 'none', paddingLeft: '0.25rem', height: '2rem'}} type="text"></input><br/>
                 <div><img style={{width: "2rem"}} src={shoppingCart} alt="shopping-cart"/></div>
             </div>

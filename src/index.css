@@ -22,3 +22,7 @@ code {
   margin: auto;
   padding: 0rem;
 }
+
+button {
+  cursor: pointer;
+}
