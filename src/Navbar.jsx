@@ -46,8 +46,8 @@ const Navbar = ({filterContainer}) => {
                 <button style={buttonStyle} type="button" value="Necklaces" onClick={filterContainer}>Necklaces</button>
                 <button style={buttonStyle} type="button" value="Shoes" onClick={filterContainer}>Shoes</button>
                 <button style={buttonStyle} type="button" value="Instruments" onClick={filterContainer}>Instruments</button>
-                <input style={searchBar} type="text"/><br/>
-                <div><img style={{width: "2rem"}} src={shoppingCart} alt="shopping-cart"/></div>
+                <input onChange={filterContainer} style={searchBar} type="text"/><br/>
+                <button style={{border: 'none', backgroundColor: 'transparent'}} type="button"><img style={{width: "2rem"}} src={shoppingCart} alt="shopping-cart"/></button>
             </div>
         </div>
     )
