@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import ProductCard from "./ProductCard";
 import CommerceService from "./services";
 const commerce = new CommerceService();
 
@@ -35,23 +36,22 @@ class Homepage extends React.Component {
         this.setState({page: value});
     }
 
+    
+
     render() {
 
-        const {loading, error, details, page} = this.state;
+        const {loading, details, page} = this.state;
 
         return(
             <div className="home-page">
                 <h1 style={{color: 'black'}}>Welcome to the Grand Antique Store</h1>
                 <Navbar filterContainer={this.filterContainer}/>
-                <div>
-                    {!loading ? details.filter(product => {
-                        console.log(product.category);
-                        console.log(page);
-                        return product.category === page || page === null})
-                                        .map(item => (
-                                            <div style={{color: 'red'}}>{item.title}</div>
+                <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', rowGap:'1rem', marginTop: '1rem'}}>
+                    {!loading ? details.filter(product => {return product.category === page || page === null})
+                                       .map(item => (
+                                            <ProductCard key={item.imageId} details={item}/>
                                         ))
-                        : <div style={{color: 'red'}}>Loading...</div>
+                        : <div style={{color: 'white', backgroundColor: 'var(--Color-Three)'}}>Loading...</div>
                     }
                 </div>
 

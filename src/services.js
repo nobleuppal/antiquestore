@@ -18,7 +18,9 @@ class CommerceService {
                             title: item.name,
                             description: item.description,
                             price: item.price.formatted_with_code,
-                            image: item.image.id,
+                            image: item.image.url,
+                            imageName: item.image.filename,
+                            imageId: item.image.id,
                             inventory: item.inventory.available,
                             category: item.categories[0].name,
                         }));

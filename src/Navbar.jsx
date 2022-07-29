@@ -27,6 +27,14 @@ const Navbar = ({filterContainer}) => {
         fontSize: '1.5rem',
     }
 
+    const searchBar = {
+        borderRadius: '0.25rem', 
+        border: 'none', 
+        paddingLeft: '0.25rem', 
+        height: '2rem',
+        width: '10rem',
+    }
+
     return(
         <div style={navStyle}>
             <div style={{marginRight: '0rem'}}>
@@ -38,7 +46,7 @@ const Navbar = ({filterContainer}) => {
                 <button style={buttonStyle} type="button" value="Necklaces" onClick={filterContainer}>Necklaces</button>
                 <button style={buttonStyle} type="button" value="Shoes" onClick={filterContainer}>Shoes</button>
                 <button style={buttonStyle} type="button" value="Instruments" onClick={filterContainer}>Instruments</button>
-                <input style={{borderRadius: '0.25rem', border: 'none', paddingLeft: '0.25rem', height: '2rem'}} type="text"></input><br/>
+                <input style={searchBar} type="text"/><br/>
                 <div><img style={{width: "2rem"}} src={shoppingCart} alt="shopping-cart"/></div>
             </div>
         </div>
