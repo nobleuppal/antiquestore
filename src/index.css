@@ -16,6 +16,7 @@ code {
   --Color-One: #D4A12A;
   --Color-Two: beige;
   --Color-Three: black;
+  --Color-Four: #38383B;
 }
 * {
   max-width: 1440px;
@@ -25,4 +26,7 @@ code {
 
 button {
   cursor: pointer;
+}
+button:hover {
+  color: var(--Color-Two);
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
+import ProductBuy from "./ProductBuy";
 import ProductCard from "./ProductCard";
 import CommerceService from "./services";
 const commerce = new CommerceService();
@@ -7,6 +8,7 @@ const commerce = new CommerceService();
 class Homepage extends React.Component {
     state = {
         details: [],
+        detailsCart: [],
         error: false,
         loading: false,
         page: null,
@@ -17,8 +19,18 @@ class Homepage extends React.Component {
         commerce.allDetails().then((res) => {
             if(res && res.response.ok) {
                 this.setState({
+                    detailsCart: res.detailsCart,
                     details: res.details,
-                    loading: false,
+                    loading: false,  
+                    screen: <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', rowGap:'1rem', marginTop: '1rem'}}>
+                                {!this.state.loading ? this.state.details
+                                    .filter(product => {return product.category === this.state.page || this.state.page === null || product.category.toLowerCase().includes(this.state.page) || product.title.toLowerCase().includes(this.state.page)})
+                                    .map(item => (
+                                            <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
+                                        ))
+                                : <div style={{color: 'white', backgroundColor: 'var(--Color-Three)'}}>Loading...</div>
+                                }
+                            </div>
                 });
             } else {
                 this.setState({loading: false});
@@ -34,27 +46,31 @@ class Homepage extends React.Component {
 
     filterContainer = ({target: {value}}) => {
         this.setState({page: value.toLowerCase()});
+        this.setState({screen: <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', rowGap:'1rem', marginTop: '1rem'}}>
+                                        {!this.state.loading ? this.state.details
+                                            .filter(product => {return product.category === value || value === null || product.category.toLowerCase().includes(value.toLowerCase()) || product.title.toLowerCase().includes(value.toLowerCase())})
+                                            .map(item => (
+                                                    <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
+                                                ))
+                                        : <div style={{color: 'white', backgroundColor: 'var(--Color-Three)'}}>Loading...</div>
+                                        }
+                               </div>});
+    }
+
+    buyProduct = (details) => {
+       this.setState({screen: <ProductBuy commerce={commerce} detailsCart={this.state.detailsCart} changeQuantity={this.changeQuantity}  details={details}/>});
     }
 
 
-    
 
-    render() {
-
-        const {loading, details, page} = this.state;
+    render() {                 
+        const {screen, detailsCart} = this.state;
 
         return(
-            <div className="home-page">
+            <div style={{backgroundColor: 'var(--Color-One)'}} className="home-page">
                 <h1 style={{color: 'black'}}>Welcome to the Grand Antique Store</h1>
-                <Navbar filterContainer={this.filterContainer}/>
-                <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', rowGap:'1rem', marginTop: '1rem'}}>
-                    {!loading ? details.filter(product => {return product.category === page || page === null || product.category.toLowerCase().includes(page) || product.title.toLowerCase().includes(page)})
-                                       .map(item => (
-                                            <ProductCard key={item.imageId} details={item}/>
-                                        ))
-                        : <div style={{color: 'white', backgroundColor: 'var(--Color-Three)'}}>Loading...</div>
-                    }
-                </div>
+                <Navbar detailsCart={detailsCart} filterContainer={this.filterContainer}/>
+                <>{screen}</>
 
             </div>
         );

@@ -9,6 +9,8 @@ const Navbar = ({filterContainer}) => {
         textAlign: 'end', 
         rowGap: '2rem',
         border: '1px solid var(--Color-Three)',
+        borderLeft: 'none',
+        borderRight: 'none',
         padding: '1rem',
         backgroundColor: 'var(--Color-One)',
         color: 'var(--Color-Three)'
@@ -38,7 +40,7 @@ const Navbar = ({filterContainer}) => {
     return(
         <div style={navStyle}>
             <div style={{marginRight: '0rem'}}>
-                <div>Sign up/Log in</div>
+                <button style={{backgroundColor: 'transparent', border: 'none', fontSize: '1.5rem'}}>Sign up/Log in</button>
             </div>
             <div style={itemStyle}>
                 <button style={buttonStyle} type="button" value="Watches" onClick={filterContainer}>Watches</button>
