@@ -1,4 +1,4 @@
-import { CREATE_CART_URL, COMMERCE_PUB_API, COMMERCE_URL, ADD_CART_URL, COMMERCE_SEC_API} from "./constants";
+import { CREATE_CART_URL, COMMERCE_PUB_API, COMMERCE_URL, ADD_CART_URL} from "./constants";
 
 class CommerceService {
     constructor() {
@@ -36,7 +36,7 @@ class CommerceService {
                             inventory: item.inventory.available,
                             category: item.categories[0].name,
                         }));
-                    const detailsCart = {totalItems: jsonCart.total_items, cartId: jsonCart.id}
+                    const detailsCart = {cartId: jsonCart.id}
                      
                     this.cartIdentity = detailsCart.cartId;
                     success({response, details, detailsCart});
@@ -68,11 +68,11 @@ class CommerceService {
 
                 if(response.ok) {
                    const json = await response.json();
-
+                   console.log(json);
                    success({response, json});
                 }
                 else {
-                    failure({error: "Invalid http request"});
+                   failure({error: "Invalid http request"});
                 }
             }
             catch(error) {

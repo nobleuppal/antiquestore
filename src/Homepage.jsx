@@ -8,10 +8,10 @@ const commerce = new CommerceService();
 class Homepage extends React.Component {
     state = {
         details: [],
-        detailsCart: [],
         error: false,
         loading: false,
         page: null,
+        cartItems: 0,
     }
     
     componentDidMount() {
@@ -19,7 +19,6 @@ class Homepage extends React.Component {
         commerce.allDetails().then((res) => {
             if(res && res.response.ok) {
                 this.setState({
-                    detailsCart: res.detailsCart,
                     details: res.details,
                     loading: false,  
                     screen: <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', rowGap:'1rem', marginTop: '1rem'}}>
@@ -58,18 +57,22 @@ class Homepage extends React.Component {
     }
 
     buyProduct = (details) => {
-       this.setState({screen: <ProductBuy commerce={commerce} detailsCart={this.state.detailsCart} changeQuantity={this.changeQuantity}  details={details}/>});
+       this.setState({screen: <ProductBuy updateCartItems={this.updateCartItems} commerce={commerce} changeQuantity={this.changeQuantity}  details={details}/>});
+    }
+
+    updateCartItems = (totalItems) => {
+        this.setState({cartItems: totalItems});
     }
 
 
 
     render() {                 
-        const {screen, detailsCart} = this.state;
+        const {screen, cartItems} = this.state;
 
         return(
             <div style={{backgroundColor: 'var(--Color-One)'}} className="home-page">
-                <h1 style={{color: 'black'}}>Welcome to the Grand Antique Store</h1>
-                <Navbar detailsCart={detailsCart} filterContainer={this.filterContainer}/>
+                <h1 style={{color: 'black', fontFamily: 'cursive'}}>Welcome to the Grand Antique Store</h1>
+                <Navbar cartItems={cartItems} filterContainer={this.filterContainer}/>
                 <>{screen}</>
 
             </div>

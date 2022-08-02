@@ -1,7 +1,7 @@
 import React from "react";
 import shoppingCart from './assets/shopping-cart-solid.svg';
 
-const Navbar = ({filterContainer}) => {
+const Navbar = ({filterContainer, cartItems}) => {
 
     const navStyle = {
         display: 'flex', 
@@ -49,7 +49,10 @@ const Navbar = ({filterContainer}) => {
                 <button style={buttonStyle} type="button" value="Shoes" onClick={filterContainer}>Shoes</button>
                 <button style={buttonStyle} type="button" value="Instruments" onClick={filterContainer}>Instruments</button>
                 <input onChange={filterContainer} style={searchBar} type="text"/><br/>
-                <button style={{border: 'none', backgroundColor: 'transparent'}} type="button"><img style={{width: "2rem"}} src={shoppingCart} alt="shopping-cart"/></button>
+                <button style={{border: 'none', backgroundColor: 'transparent'}} type="button">
+                    <img style={{width: "2rem"}} src={shoppingCart} alt="shopping-cart"/>
+                    <span style={{color: 'var(--Color-Two)', backgroundColor: 'var(--Color-Five)', borderRadius: '1rem', padding: '0rem 0.25rem'}}>{cartItems}</span>
+                </button>
             </div>
         </div>
     )
