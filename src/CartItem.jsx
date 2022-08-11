@@ -1,14 +1,14 @@
 import React from "react";
 
-const CartItem = ({image, quantity, name, price, fileName, removeItem, itemId}) => {
+const CartItem = ({image, quantity, name, price, fileName, itemId, removeItem}) => {
 
     return ( 
-        <div style={{display: 'flex', columnGap: '5rem'}}>
+        <div style={{display: 'flex', columnGap: '5rem', border: '1px solid var(--Color-Three)', padding: '1rem'}}>
             <img style={{width: '15rem', height: '15rem'}} src={image} alt={fileName}/>
-            <div style={{width: '20rem'}}>
+            <div style={{width: '30rem', display: 'flex', flexDirection: 'column', height: '20rem'}}>
                 <div>
                     <h4 style={{textAlign: 'left'}}>{name}</h4>
-                    <div style={{textAlign: 'left'}}>{price}</div>
+                    <div style={{textAlign: 'left'}}>${price}</div>
                 </div>
                 <button onClick={removeItem} id={itemId} style={{width: '10rem', height: '3rem', border: 'none', backgroundColor: 'var(--Color-Four)'}}>Remove</button>
             </div>

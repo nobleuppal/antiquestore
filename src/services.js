@@ -111,7 +111,7 @@ class CommerceService {
         })
     }
 
-    async updateCart(line_item_id) {
+    async updateCart(line_item_id, value) {
         const finalUpdateCartUrl = GET_CART_URL.concat(this.cartIdentity).concat('/items/').concat(line_item_id);
 
         return new Promise(async (success, failure) => {
@@ -123,7 +123,36 @@ class CommerceService {
                         'Content-Type': "application/json",
                         'Accept': "application/json",
                     }),
-                    body: JSON.stringify({'quantity': 0})
+                    body: JSON.stringify({'quantity': value})
+                });
+
+                if(response.ok) {
+                   const json = await response.json();
+                   //console.log(json);
+                   success({response, json});
+                }
+                else {
+                   failure({error: "Invalid http request"});
+                }
+            }
+            catch(error) {
+                failure(error);
+            }    
+        })
+    }
+
+    async deleteCart(line_item_id) {
+        const finalDeleteCartUrl = GET_CART_URL.concat(this.cartIdentity).concat('/items/').concat(line_item_id);
+
+        return new Promise(async (success, failure) => {
+            try {
+                const response = await fetch(finalDeleteCartUrl, {
+                    method: 'DELETE',
+                    headers: new Headers({
+                        'X-Authorization': COMMERCE_PUB_API, 
+                        'Content-Type': "application/json",
+                        'Accept': "application/json",
+                    }),
                 });
 
                 if(response.ok) {
