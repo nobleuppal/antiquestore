@@ -1,9 +1,10 @@
-import { CREATE_CART_URL, COMMERCE_PUB_API, COMMERCE_URL, ADD_CART_URL} from "./constants";
+import { CREATE_CART_URL, COMMERCE_PUB_API, COMMERCE_URL, ADD_CART_URL, GET_CART_URL} from "./constants";
 
 class CommerceService {
     constructor() {
         this.cartIdentity = '';
     }
+
     async allDetails() {
         return new Promise(async (success, failure) => {
             try {
@@ -68,7 +69,66 @@ class CommerceService {
 
                 if(response.ok) {
                    const json = await response.json();
-                   console.log(json);
+                   //console.log(json);
+                   success({response, json});
+                }
+                else {
+                   failure({error: "Invalid http request"});
+                }
+            }
+            catch(error) {
+                failure(error);
+            }    
+        })
+    }
+
+    async getCart() {
+        const finalGetCartUrl = GET_CART_URL.concat(this.cartIdentity);
+
+        return new Promise(async (success, failure) => {
+            try {
+                const response = await fetch(finalGetCartUrl, {
+                    method: 'GET',
+                    headers: new Headers({
+                        'X-Authorization': COMMERCE_PUB_API, 
+                        'Content-Type': "application/json",
+                        'Accept': "application/json",
+                    }),
+                });
+
+                if(response.ok) {
+                   const json = await response.json();
+                   //console.log(json);
+                   success({response, json});
+                }
+                else {
+                   failure({error: "Invalid http request"});
+                }
+            }
+            catch(error) {
+                failure(error);
+            }    
+        })
+    }
+
+    async updateCart(line_item_id) {
+        const finalUpdateCartUrl = GET_CART_URL.concat(this.cartIdentity).concat('/items/').concat(line_item_id);
+
+        return new Promise(async (success, failure) => {
+            try {
+                const response = await fetch(finalUpdateCartUrl, {
+                    method: 'PUT',
+                    headers: new Headers({
+                        'X-Authorization': COMMERCE_PUB_API, 
+                        'Content-Type': "application/json",
+                        'Accept': "application/json",
+                    }),
+                    body: JSON.stringify({'quantity': 0})
+                });
+
+                if(response.ok) {
+                   const json = await response.json();
+                   //console.log(json);
                    success({response, json});
                 }
                 else {

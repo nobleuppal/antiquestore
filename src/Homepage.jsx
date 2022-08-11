@@ -18,7 +18,7 @@ class Homepage extends React.Component {
         cartItems: 0,
         modal: null,
         isAccount: false,
-        logged: 'Sign Up/Log In',
+        greeting: 'Sign Up/Log In',
         match: null,
     }
   
@@ -69,7 +69,7 @@ class Homepage extends React.Component {
     }
 
     toLogin = () => {
-        if (this.state.logged.includes('Welcome')) {
+        if (this.state.greeting.includes('Welcome')) {
             this.setState({modal: null});
         }
         else if(this.state.modal === null) {
@@ -97,26 +97,25 @@ class Homepage extends React.Component {
 
     checkAccounts = (email, password, e) => {
         e.preventDefault();
-        console.log(userList);
         const user = userList.find( user => (user.email === email && user.password === password));
         if(user !== undefined) {
             this.setState({isAccount: true});
-            this.setState({logged: `Welcome ${user.first}!`});
+            this.setState({greeting: `Welcome ${user.first}!`});
         }
     }
 
     cartClick = () => {
         if(this.state.isAccount) {
-            this.setState({screen: <CartPage/>});
+            this.setState({screen: <CartPage updateCartItems={this.updateCartItems} commerce={commerce}/>});
         }
     }
 
     render() {                 
-        const {screen, cartItems, modal, logged} = this.state;
+        const {screen, cartItems, modal, greeting} = this.state;
 
         return(
             <div style={{backgroundColor: 'var(--Color-One)'}} className="home-page">
-                <Navbar logged={logged} cartClick={this.cartClick} toLogIn={this.toLogin} cartItems={cartItems} filterContainer={this.filterContainer}/>
+                <Navbar greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogin} cartItems={cartItems} filterContainer={this.filterContainer}/>
                 <>{modal}</>
                 <>{screen}</>
             </div>

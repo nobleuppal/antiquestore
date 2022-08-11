@@ -1,7 +1,7 @@
 import React from "react";
 import shoppingCart from './assets/shopping-cart-solid.svg';
 
-const Navbar = ({filterContainer, cartItems, toLogIn, cartClick, logged}) => {
+const Navbar = ({filterContainer, cartItems, toLogIn, cartClick, greeting}) => {
 
     const navStyle = {
         display: 'flex', 
@@ -24,7 +24,7 @@ const Navbar = ({filterContainer, cartItems, toLogIn, cartClick, logged}) => {
         display: 'flex',  
         borderTop: '1px solid var(--Color-Three)', 
         paddingTop:'1rem',
-        width: '100vw',
+        width: '90vw',
     } 
 
     const buttonStyle = {
@@ -45,7 +45,7 @@ const Navbar = ({filterContainer, cartItems, toLogIn, cartClick, logged}) => {
         <div style={navStyle}>
             <h1 style={{color: 'black', fontFamily: 'cursive'}}>Welcome to the Grand Antique Store</h1>
             <div style={{marginRight: '0rem'}}>
-                <button onClick={toLogIn} style={{backgroundColor: 'transparent', border: 'none', fontSize: '1.5rem'}}>{logged}</button>
+                <button onClick={toLogIn} style={{backgroundColor: 'transparent', border: 'none', fontSize: '1.5rem'}}>{greeting}</button>
             </div>
             <div style={itemStyle}>
                 <button style={buttonStyle} type="button" value="Watches" onClick={filterContainer}>Watches</button>
