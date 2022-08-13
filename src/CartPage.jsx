@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 
-const CartPage = ({commerce, updateCartItems}) => {
+const CartPage = ({commerce, updateCartItems, shippingClick}) => {
 
     const [cartList, setCartList] = useState([]);
     const [cartTotal, setCartTotal] = useState();
     const [loading, setLoading] = useState(false);
+    const [removing, setRemoving] = useState('Remove');
+
     
     useEffect(() => {
         setLoading(true);
@@ -19,9 +21,11 @@ const CartPage = ({commerce, updateCartItems}) => {
     }, [])
 
     const removeItem = ({target: {id}}) => {
+        setRemoving('Removing...');
         commerce.deleteCart(id)
                 .then(res => {
                         console.log(res.json);
+                        setRemoving('Remove');
                         updateCartItems(res.json.cart.total_items);
                         setCartList(res.json.cart.line_items);
                     }
@@ -41,13 +45,13 @@ const CartPage = ({commerce, updateCartItems}) => {
     return ( 
         <div style={{display: 'flex'}}>
             <div style={{width: '100vw', marginTop: '20rem', display: 'flex', flexDirection: 'column', rowGap: '1rem'}}>
-                {!loading ? (cartList.length !== 0 ? cartList.map(item => <CartItem key={item.product_id} itemId={item.id} removeItem={removeItem} image={item.image.url} quantity={item.quantity} name={item.name} price={item.price.formatted_with_code} fileName={item.image.fileName}/>)
+                {!loading ? (cartList.length !== 0 ? cartList.map(item => <CartItem key={item.product_id} removing={removing} itemId={item.id} removeItem={removeItem} image={item.image.url} quantity={item.quantity} name={item.name} price={item.price.formatted_with_code} fileName={item.image.fileName}/>)
                                             : <div>Empty Cart</div>)
                           : <div>Loading...</div>
                 }
             </div>
             <div style={checkoutStyle}>
-                <button style={{width: '20rem', height: '3rem', backgroundColor: 'var(--Color-Five)', border: 'none'}}>Checkout</button>
+                <button onClick={shippingClick} style={{width: '20rem', height: '3rem', backgroundColor: 'var(--Color-Five)', border: 'none'}}>Checkout</button>
                 <div>Subtotal: ${cartTotal}</div>
             </div>
         </div>

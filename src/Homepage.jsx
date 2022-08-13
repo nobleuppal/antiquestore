@@ -6,6 +6,8 @@ import CommerceService from "./services";
 import {userList} from './accounts';
 import LogIn from "./LogIn";
 import CartPage from "./CartPage";
+import Shipping from "./Shipping";
+import Confirmation from "./Confirmation";
 const commerce = new CommerceService();
 
 
@@ -20,6 +22,7 @@ class Homepage extends React.Component {
         isAccount: false,
         greeting: 'Sign Up/Log In',
         match: null,
+        errorMessage: null,
     }
   
     componentDidMount() {
@@ -106,17 +109,32 @@ class Homepage extends React.Component {
 
     cartClick = () => {
         if(this.state.isAccount) {
-            this.setState({screen: <CartPage updateCartItems={this.updateCartItems} commerce={commerce}/>});
+            this.setState({screen: <CartPage shippingClick={this.shippingClick} updateCartItems={this.updateCartItems} commerce={commerce}/>});
+        }
+    }
+
+    shippingClick = () => {
+        this.setState({screen: <Shipping confirmClick={this.confirmClick} commerce={commerce}/>})
+    }
+
+    confirmClick = (error, expError, cardError, lastDigits) => {
+        if(!error && !expError && !cardError) {
+            this.setState({screen: <Confirmation lastDigits={lastDigits}/>});
+            this.setState({errorMessage: null});
+        }
+        else {
+            this.setState({errorMessage: 'Error: 1 or more fields are not filled correctly'});
         }
     }
 
     render() {                 
-        const {screen, cartItems, modal, greeting} = this.state;
+        const {screen, cartItems, modal, greeting, errorMessage} = this.state;
 
         return(
             <div style={{backgroundColor: 'var(--Color-One)'}} className="home-page">
                 <Navbar greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogin} cartItems={cartItems} filterContainer={this.filterContainer}/>
                 <>{modal}</>
+                <div style={{width: '10rem', height: '2rem', color: 'var(--Color-Two)', position: 'fixed', top: '20rem', color: 'var(--Color-Five)'}}>{errorMessage}</div>           
                 <>{screen}</>
             </div>
         );

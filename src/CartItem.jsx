@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 
-const CartItem = ({image, quantity, name, price, fileName, itemId, removeItem}) => {
+const CartItem = ({image, quantity, name, price, fileName, itemId, removeItem, removing}) => {
+
 
     return ( 
         <div style={{display: 'flex', columnGap: '5rem', border: '1px solid var(--Color-Three)', padding: '1rem'}}>
@@ -10,7 +11,7 @@ const CartItem = ({image, quantity, name, price, fileName, itemId, removeItem}) 
                     <h4 style={{textAlign: 'left'}}>{name}</h4>
                     <div style={{textAlign: 'left'}}>${price}</div>
                 </div>
-                <button onClick={removeItem} id={itemId} style={{width: '10rem', height: '3rem', border: 'none', backgroundColor: 'var(--Color-Four)'}}>Remove</button>
+                <button onClick={removeItem} id={itemId} style={{width: '10rem', height: '3rem', border: 'none', backgroundColor: 'var(--Color-Four)'}}>{removing}</button>
             </div>
             <div>x{quantity}</div>
         </div>
