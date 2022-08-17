@@ -6,6 +6,7 @@ import Visa from './assets/visa_logo.png';
 import Discover from './assets/Discover_Card_logo.png';
 import Amex from './assets/American_Express_logo.png';
 import Credit from './assets/credit-card-solid.svg';
+import { countryArray } from "./accounts";
 
 const Shipping = ({commerce, confirmClick}) => {
 
@@ -17,6 +18,7 @@ const Shipping = ({commerce, confirmClick}) => {
     const securityCodeLength = 3;
     const nameLength = 25;
     const codeLength = 6;
+    const shipping = 0.00;
 
     const checkoutStyle = {
         display: 'flex', 
@@ -31,6 +33,13 @@ const Shipping = ({commerce, confirmClick}) => {
     const inputStyle = {
         height: '2rem',
         width: '15rem',
+        paddingLeft: '0.25rem',
+        margin: '0rem'
+    }
+    
+    const selectStyle = {
+        height: '2rem',
+        width: '15.5rem',
         paddingLeft: '0.25rem',
         margin: '0rem'
     }
@@ -54,6 +63,8 @@ const Shipping = ({commerce, confirmClick}) => {
     const [error, setError] = useState(true);
     const [expError, setExpError] = useState(true);
     const [cardError, setCardError] = useState(true);
+    const [country, setCountry] = useState('');
+    const [rawTotal, setRawTotal] = useState(1500);
 
 
     useEffect(() => {
@@ -61,11 +72,15 @@ const Shipping = ({commerce, confirmClick}) => {
         commerce.getCart()
                 .then(res => {
                     setLoading(false);
-                    console.log(res.json);
                     setCartList(res.json.line_items);
                     setCartTotal(res.json.subtotal.formatted_with_code);
-                })        
-    }, [])
+                    setRawTotal(res.json.subtotal.raw);
+                }) 
+        commerce.addTax('CA', shipping, rawTotal)
+                .then(res => {
+                    console.log(res.json);
+                }); 
+    }, [country])
 
     const numberCheck = ({target: {value}}) => {
         const regExMaster = /^5[1-5][0-9]{14}|^2[2-7][0-9]{14}$/;
@@ -135,14 +150,17 @@ const Shipping = ({commerce, confirmClick}) => {
             <form style={{width: '100vw', marginTop: '20rem', display: 'flex', flexDirection: 'column', rowGap: '1rem'}}>
             <h2>Shipping Address</h2>
             <div style={infoStyle}>
-                    <input onChange={(e) => errorCheck(e)} maxLength={nameLength} type='text' id='first-name' name="first-name" style={inputStyle} placeholder="First Name"/>
-                    <input onChange={(e) => errorCheck(e)} maxLength={nameLength} type='text' id='last-name' name="last-name" style={inputStyle} placeholder="Last Name"/>
+                <input onChange={(e) => errorCheck(e)} maxLength={nameLength} type='text' id='first-name' name="first-name" style={inputStyle} placeholder="First Name"/>
+                <input onChange={(e) => errorCheck(e)} maxLength={nameLength} type='text' id='last-name' name="last-name" style={inputStyle} placeholder="Last Name"/>
             </div>
             <div style={infoStyle}>
-                    <input onChange={(e) => errorCheck(e)} type='text' id='address' name="address" style={inputStyle} placeholder='Address'/>
-                    <input onChange={(e) => errorCheck(e)} type='text' id="city" name="city" style={inputStyle} placeholder='City'/>
-                    <input onChange={(e) => errorCheck(e)} type='text' id='prov-state' name="prov-state" style={inputStyle} placeholder='Province/State'/>
-                    <input onChange={(e) => errorCheck(e)} maxLength={codeLength} type='text' id="post-zip" name="post-zip" style={inputStyle} placeholder='Post Code/Zip Code'/>
+                <input onChange={(e) => errorCheck(e)} type='text' id='address' name="address" style={inputStyle} placeholder='Address'/>
+                <input onChange={(e) => errorCheck(e)} type='text' id="city" name="city" style={inputStyle} placeholder='City'/>
+                <input onChange={(e) => errorCheck(e)} type='text' id='prov-state' name="prov-state" style={inputStyle} placeholder='Province/State'/>
+                <input onChange={(e) => errorCheck(e)} maxLength={codeLength} type='text' id="post-zip" name="post-zip" style={inputStyle} placeholder='Post Code/Zip Code'/>
+                <select style={selectStyle}>
+                    {countryArray.map(country => <option key={country.code} onChange={() => setCountry(country.code)} value={country.code}>{country.name}</option>)}
+                </select>                   
             </div>
 
             <h2>Secure Payment</h2>

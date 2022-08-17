@@ -14,7 +14,6 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
         commerce.getCart()
                 .then(res => {
                     setLoading(false);
-                    console.log(res.json);
                     setCartList(res.json.line_items);
                     setCartTotal(res.json.subtotal.formatted_with_code);
                 })        

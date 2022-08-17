@@ -4,3 +4,7 @@ export const CREATE_CART_URL = 'https://api.chec.io/v1/carts';
 export const ADD_CART_URL = 'https://api.chec.io/v1/carts/';
 export const COMMERCE_SEC_API = process.env.REACT_APP_COMMERCE_SEC_API;
 export const GET_CART_URL = 'https://api.chec.io/v1/carts/';
+export const GET_TAX = 'https://api.taxjar.com/v2/taxes';
+export const GET_SAND_TAX = 'https://api.sandbox.taxjar.com';
+export const TAX_API = process.env.REACT_APP_TAX_API;
+export const TAX_SAND_API = process.env.REACT_APP_TAX_SAND_API;
