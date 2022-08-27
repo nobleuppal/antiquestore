@@ -46,7 +46,6 @@ class Homepage extends React.Component {
                 this.setState({loading: false});
             }
         }, (error) => {
-            console.log(error);
             this.setState(({
                 loading: false,
                 error: true,
