@@ -1,4 +1,4 @@
-import { CREATE_CART_URL, COMMERCE_PUB_API, COMMERCE_URL, ADD_CART_URL, GET_CART_URL, GET_TAX, TAX_API, TAX_SAND_API, GET_SAND_TAX} from "./constants";
+import { CREATE_CART_URL, COMMERCE_PUB_API, COMMERCE_URL, ADD_CART_URL, GET_CART_URL} from "./constants";
 
 class CommerceService {
     constructor() {
@@ -153,34 +153,6 @@ class CommerceService {
                         'Content-Type': "application/json",
                         'Accept': "application/json",
                     }),
-                });
-
-                if(response.ok) {
-                   const json = await response.json();
-                   //console.log(json);
-                   success({response, json});
-                }
-                else {
-                   failure({error: "Invalid http request"});
-                }
-            }
-            catch(error) {
-                failure(error);
-            }    
-        })
-    }
-
-    async addTax(country, shipping, amount) {
-        return new Promise(async (success, failure) => {
-            try {
-                const response = await fetch(GET_TAX, {
-                    mode: 'no-cors',
-                    method: 'POST',
-                    headers: new Headers({
-                        'Authorization': `Bearer ${TAX_API}`, 
-                        'Content-Type': "application/json",
-                    }),
-                    body: JSON.stringify({to_country: country, amount: amount, shipping: shipping}),
                 });
 
                 if(response.ok) {
