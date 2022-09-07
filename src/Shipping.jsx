@@ -76,10 +76,6 @@ const Shipping = ({commerce, confirmClick}) => {
                     setCartTotal(res.json.subtotal.formatted_with_code);
                     setRawTotal(res.json.subtotal.raw);
                 }) 
-        commerce.addTax('CA', shipping, rawTotal)
-                .then(res => {
-                    console.log(res.json);
-                }); 
     }, [country])
 
     const numberCheck = ({target: {value}}) => {
