@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CreateAccount from './CreateAccount';
 import SignIn from './SignIn';
-import times from './assets/times-circle-solid.svg';
+import times from '../assets/times-circle-solid.svg';
 
 const LogIn = ({toLogIn, updateAccounts, checkAccounts, match}) => { 
     

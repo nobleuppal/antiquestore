@@ -4,7 +4,7 @@ const CartItem = ({image, quantity, name, price, fileName, itemId, removeItem, r
 
 
     return ( 
-        <div style={{display: 'flex', columnGap: '5rem', border: '1px solid var(--Color-Three)', padding: '1rem'}}>
+        <div className="cart-item">
             <img style={{width: '15rem', height: '15rem'}} src={image} alt={fileName}/>
             <div style={{width: '30rem', display: 'flex', flexDirection: 'column', height: '20rem'}}>
                 <div>

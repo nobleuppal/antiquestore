@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 import CartItem from "./CartItem";
 import CheckoutItem from "./CheckoutItem";
-import Mastercard from './assets/Mastercard-logo.jpeg';
-import Visa from './assets/visa_logo.png';
-import Discover from './assets/Discover_Card_logo.png';
-import Amex from './assets/American_Express_logo.png';
-import Credit from './assets/credit-card-solid.svg';
-import { countryArray } from "./accounts";
+import Mastercard from '../assets/Mastercard-logo.jpeg';
+import Visa from '../assets/visa_logo.png';
+import Discover from '../assets/Discover_Card_logo.png';
+import Amex from '../assets/American_Express_logo.png';
+import Credit from '../assets/credit-card-solid.svg';
+import { countryArray } from "../accounts";
 
 const Shipping = ({commerce, confirmClick}) => {
 

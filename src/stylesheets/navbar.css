@@ -1,0 +1,73 @@
+.nav-bar {
+    background-color: var(--Color-Six);
+}
+.nav-bar-top {
+    display: flex;
+    padding-top: 1rem;
+}
+.nav-bar-top .right-side {
+    margin-right: 2rem;
+    display: flex;
+    column-gap: 1rem;
+}
+.nav-bar-top .right-side button {
+    background-color: transparent;
+    border: none;
+}
+.nav-bar-top .logo {
+    margin-left: 2rem;
+    color: var(--Color-Three);
+
+}
+.nav-bar-top img {
+    width: 12rem;
+    height: 4rem;
+}
+.nav-bar-bottom {
+    display: flex;
+    padding-top: 0rem;
+}
+.nav-bar-bottom img {
+    position: relative;
+    top: 1rem;
+}
+.nav-bar-bottom > div {
+    text-align: left;
+}
+.nav-bar-bottom p, .nav-bar-bottom h3 {
+    align-self: flex-start;
+    margin-bottom: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+}
+.nav-bar-bottom h3 {
+    font-weight: 500;
+    font-size: 2rem;
+}
+.nav-bar-bottom .dummy-btn-ctn {
+    display: flex;
+    width: 15rem;
+    margin-left: 0rem;
+}
+.nav-bar-bottom .dummy-btn-ctn button:first-child, #log-btn {
+    background-color: var(--Color-Seven);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.nav-bar-bottom .dummy-btn-ctn button:last-child {
+    background-color: transparent;
+    border: 1px solid var(--Color-Two);
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.nav-bar .right-side img {
+    width: 2rem;
+    height: fit-content;
+}
+.nav-bar .right-side span {
+    color: var(--Color-Two);
+    background-color: var(--Color-Seven);
+    border-radius: 1rem; 
+    padding: 0rem 0.25rem
+}

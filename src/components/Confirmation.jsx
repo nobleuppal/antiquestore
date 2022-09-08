@@ -1,5 +1,5 @@
 import React from "react";
-import greenCheckmark from './assets/green_checkmark.png';
+import greenCheckmark from '../assets/green_checkmark.png';
 
 const Confirmation = ({lastDigits}) => {
     return (

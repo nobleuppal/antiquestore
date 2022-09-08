@@ -18,6 +18,8 @@ code {
   --Color-Three: black;
   --Color-Four: #38383B;
   --Color-Five: #7A263A;
+  --Color-Six: #00649f;
+  --Color-Seven: #db0049;
 }
 * {
   max-width: 1440px;
