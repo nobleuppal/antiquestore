@@ -1,0 +1,74 @@
+.product-buy {
+    width: 100vw;
+    background-color: var(--Color-Six);
+    display: flex;
+}
+.product-buy .item-container {
+    background-color: var(--Color-Eight);
+    width: 40rem;
+    height: 36rem;
+    border-radius: 1rem;
+    margin-left: 1rem;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+    margin-top: 1rem;
+}
+.product-buy .item-container img {
+    width: 35rem;
+    height: 40rem;
+}
+.product-buy .item-info {
+    display: flex;
+    flex-direction: column; 
+    row-gap: 5rem;
+    padding: 1rem;
+    border-left: 1px solid var(--Color-Three);
+}
+.product-buy .item-info .info-ctn {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+.product-buy .item-info .titles {
+    margin-left: 0rem;
+}
+.product-buy .item-info .titles p {
+    font-weight: bold;
+    color: var(--Color-Three);
+    text-align: left;
+    border-bottom: 1px solid var(--Color-Three);
+    font-style: italic;
+}
+.product-buy .item-info .titles div {
+    font-size: 1rem;
+    text-align: left;
+}
+.product-buy .item-info .quantity-btn {
+    width: 3rem;
+    height: 2rem;
+    background-color: transparent;
+    border: 1px solid var(--Color-Three);
+}
+.product-buy .item-info .cart-btn {
+    width: 15rem;
+    height: 3rem;
+    background-color: transparent;
+    border: 1px solid var(--Color-Three);
+}
+.product-buy .item-info .quantity {
+    width: 3rem;
+}
+.product-buy .item-info .quantity-ctn {
+    display: flex;
+    column-gap: 1rem;
+    width: 7rem;
+    height: 2rem;
+}
+.product-buy .item-info .item-quantity {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+.product-buy .item-info .item-quantity .quantity-error {
+    color: var(--Color-Five);
+}

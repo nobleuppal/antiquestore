@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../stylesheets/productbuy.css';
 
 const ProductBuy = ({details, commerce, updateCartItems}) => {
 
@@ -59,19 +60,25 @@ const ProductBuy = ({details, commerce, updateCartItems}) => {
     }
 
     return(
-        <div style={productBuyStyle}>
-            <img style={{width: '20rem', height: '18rem', padding: '1rem'}} src={details.image} alt={details.imageName}/>
-            <div style={{display: 'flex',flexDirection: 'column' ,rowGap: '2rem', padding: '1rem'}}>
-                <h2>{details.title}</h2>
-                <p>${details.price}</p>
-                <p>{details.description.slice(3).slice(0, details.description.length-7)}</p>
-                <div style={{display: 'flex', columnGap: '1rem', width: '7rem', height: '2rem'}}>
-                    <button style={quantityButtons} onClick={(e) => changeQuantity(e)} type="button" value="-">-</button>
-                    <span style={{width: '3rem'}}>{quantity}</span>
-                    <button style={quantityButtons} onClick={(e) => changeQuantity(e)} type="button" value="+">+</button>
+        <div className="product-buy">
+            <div className="item-container">
+                <img src={details.image} alt={details.imageName}/>            
+            </div>
+            <div className="item-info">
+                <div className="info-ctn">
+                    <p className="titles"><p>Name</p><div>{details.title}</div></p>
+                    <p className="titles"><p>Price</p><div>${details.price}</div></p>
+                    <p className="titles"><p>Description</p><div>{details.description.slice(3).slice(0, details.description.length-7)}</div></p>
                 </div>
-                <div style={{backgroundColor: 'var(--Color-Five)', color: 'var(--Color-Two)'}}>{errorMessage}</div>
-                <button onClick={() => addToCart()} style={cartButton} type="button">{loading}</button>
+                <div className="item-quantity">
+                    <div className="quantity-ctn">
+                        <button className="quantity-btn" onClick={(e) => changeQuantity(e)} type="button" value="-">-</button>
+                        <span className="quantity">{quantity}</span>
+                        <button className="quantity-btn" onClick={(e) => changeQuantity(e)} type="button" value="+">+</button>
+                    </div>
+                    <button onClick={() => addToCart()} className="cart-btn" type="button">{loading}</button>
+                    <div className="quantity-error">{errorMessage}</div>
+                </div>
             </div>
         </div>
     );

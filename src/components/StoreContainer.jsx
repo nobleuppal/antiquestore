@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Navbar from "./Navbar";
 import ProductBuy from "./ProductBuy";
 import ProductCard from "./ProductCard";
@@ -39,7 +39,8 @@ class StoreContainer extends React.Component {
                         <img src={flowersPhoto} alt="antique-stock"/>
                     </div>,
     }
-  
+
+
     componentDidMount() {
         this.setState({loading: true});
         commerce.allDetails().then((res) => {
@@ -53,7 +54,7 @@ class StoreContainer extends React.Component {
                                     <div>Products</div>
                                     <div>
                                         <div className="search-wrp">
-                                            {this.state.search}
+                                            <input onChange={(e) => this.filterContainer(e)} type="text"/>
                                         </div> 
                                         <button type="button" value="all" onClick={(e) => this.filterContainer(e)}>All</button>
                                         <button type="button" value="Watches" onClick={(e) => this.filterContainer(e)}>Watches</button>
@@ -82,10 +83,6 @@ class StoreContainer extends React.Component {
                 error: true,
             }));
         });
-    }
-
-    getBar = () => {                             
-        this.setState({search: <input onChange={(e) => this.filterContainer(e)} type="text"/>});
     }
 
     filterContainer = ({target: {value}}) => {
@@ -118,6 +115,46 @@ class StoreContainer extends React.Component {
             this.setState({modal: null});
         }
     }
+
+    toHome = () => {   
+        this.setState({pageHeader: <div className="nav-bar-bottom">
+                                        <div>
+                                            <p>THESE ARE VINTAGE ITEMS</p>
+                                            <h3>POSSESSED BY THE BIGGEST <br/> NAMES IN HISTORY</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/> Fusce id est gravida</p>
+                                            <div className="dummy-btn-ctn">
+                                                <button>Buy Now</button>
+                                                <button>Read More</button>
+                                            </div>
+                                        </div>
+                                        <img src={flowersPhoto} alt="antique-stock"/>
+                                    </div>})
+
+        this.setState({screen: <div className="product-ctn">
+                                    {!this.state.loading ? this.state.details
+                                        .filter(product => {return product.category === this.state.page || this.state.page === null || product.category.toLowerCase().includes(this.state.page) || product.title.toLowerCase().includes(this.state.page)})
+                                        .map(item => (
+                                                <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
+                                            ))
+                                        : <div className="loading">Loading...</div>
+                                    }
+                                </div>})
+
+        this.setState({productNav: <div className="categories">
+                                        <div>Products</div>
+                                        <div>
+                                            <div className="search-wrp">
+                                                <input onChange={(e) => this.filterContainer(e)} type="text"/>
+                                            </div> 
+                                            <button type="button" value="all" onClick={(e) => this.filterContainer(e)}>All</button>
+                                            <button type="button" value="Watches" onClick={(e) => this.filterContainer(e)}>Watches</button>
+                                            <button type="button" value="Clocks" onClick={(e) => this.filterContainer(e)}>Clocks</button>
+                                            <button type="button" value="Necklaces" onClick={(e) => this.filterContainer(e)}>Necklaces</button>
+                                            <button type="button" value="Shoes" onClick={(e) => this.filterContainer(e)}>Shoes</button>
+                                            <button type="button" value="Instruments" onClick={(e) => this.filterContainer(e)}>Instruments</button>                      
+                                        </div>        
+                                    </div>})
+                    }
 
     updateCartItems = (totalItems) => {
         this.setState({cartItems: totalItems});
@@ -168,7 +205,7 @@ class StoreContainer extends React.Component {
 
         return(
             <div className="store-container">
-                <Navbar newPageHeader={pageHeader} greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogin} cartItems={cartItems}/>    
+                <Navbar toHome={this.toHome} newPageHeader={pageHeader} greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogin} cartItems={cartItems}/>    
                 <>{productNav}</>       
                 <>{modal}</>
                 <div className="error-message">{errorMessage}</div>           
