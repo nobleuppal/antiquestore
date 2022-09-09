@@ -1,0 +1,12 @@
+.product-card {
+    font-size: 1rem;
+    border-radius: 1rem;
+    background-color: var(--Color-Nine);
+    width: 18rem;
+    height: 16rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+.product-card img {
+    border-radius: 8rem;
+}

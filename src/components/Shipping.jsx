@@ -63,7 +63,6 @@ const Shipping = ({commerce, confirmClick}) => {
     const [error, setError] = useState(true);
     const [expError, setExpError] = useState(true);
     const [cardError, setCardError] = useState(true);
-    const [country, setCountry] = useState('');
     const [rawTotal, setRawTotal] = useState(1500);
 
 
@@ -76,7 +75,7 @@ const Shipping = ({commerce, confirmClick}) => {
                     setCartTotal(res.json.subtotal.formatted_with_code);
                     setRawTotal(res.json.subtotal.raw);
                 }) 
-    }, [country])
+    }, [])
 
     const numberCheck = ({target: {value}}) => {
         const regExMaster = /^5[1-5][0-9]{14}|^2[2-7][0-9]{14}$/;
@@ -155,7 +154,7 @@ const Shipping = ({commerce, confirmClick}) => {
                 <input onChange={(e) => errorCheck(e)} type='text' id='prov-state' name="prov-state" style={inputStyle} placeholder='Province/State'/>
                 <input onChange={(e) => errorCheck(e)} maxLength={codeLength} type='text' id="post-zip" name="post-zip" style={inputStyle} placeholder='Post Code/Zip Code'/>
                 <select style={selectStyle}>
-                    {countryArray.map(country => <option key={country.code} onChange={() => setCountry(country.code)} value={country.code}>{country.name}</option>)}
+                    {countryArray.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}
                 </select>                   
             </div>
 

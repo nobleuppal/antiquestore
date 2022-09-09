@@ -11,7 +11,6 @@ const ProductBuy = ({details, commerce, updateCartItems}) => {
         backgroundColor: 'var(--Color-Two)',
         color: 'var(--Color-Four)',
         display: 'flex',
-        marginTop: '20rem',
         width: '100vw',
     }
     

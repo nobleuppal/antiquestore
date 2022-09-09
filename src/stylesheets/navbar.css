@@ -17,7 +17,6 @@
 .nav-bar-top .logo {
     margin-left: 2rem;
     color: var(--Color-Three);
-
 }
 .nav-bar-top img {
     width: 12rem;
@@ -29,7 +28,7 @@
 }
 .nav-bar-bottom img {
     position: relative;
-    top: 1rem;
+    top: 5rem;
 }
 .nav-bar-bottom > div {
     text-align: left;

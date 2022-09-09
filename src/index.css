@@ -20,6 +20,8 @@ code {
   --Color-Five: #7A263A;
   --Color-Six: #00649f;
   --Color-Seven: #db0049;
+  --Color-Eight: #a80038;
+  --Color-Nine: #00446c;
 }
 * {
   max-width: 1440px;
