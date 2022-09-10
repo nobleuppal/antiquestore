@@ -5,7 +5,7 @@ const ProductCard = ({details, buyProduct}) => {
 
     return(
         <div className="product-card" onClick={() => buyProduct(details)}>
-            <img style={{width: '14rem', height: '13rem'}} src={details.image} alt={details.imageName}/>
+            <img src={details.image} alt={details.imageName}/>
             <div>{details.title}</div>
             <p>$ {details.price}</p>
         </div>

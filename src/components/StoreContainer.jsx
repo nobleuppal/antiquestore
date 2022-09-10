@@ -181,9 +181,7 @@ class StoreContainer extends React.Component {
     }
 
     cartClick = () => {
-        if(this.state.isAccount) {
-            this.setState({screen: <CartPage shippingClick={this.shippingClick} updateCartItems={this.updateCartItems} commerce={commerce}/>});
-        }
+        this.setState({screen: <CartPage shippingClick={this.shippingClick} updateCartItems={this.updateCartItems} commerce={commerce}/>});        
     }
 
     shippingClick = () => {
