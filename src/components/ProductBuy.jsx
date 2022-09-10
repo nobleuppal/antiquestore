@@ -8,31 +8,6 @@ const ProductBuy = ({details, commerce, updateCartItems}) => {
     const [itemQuantity, setItemQuantity] = useState(0);
     const [loading, setLoad] = useState('Add to Cart');
 
-    const productBuyStyle = {
-        backgroundColor: 'var(--Color-Two)',
-        color: 'var(--Color-Four)',
-        display: 'flex',
-        width: '100vw',
-    }
-    
-    const quantityButtons = {
-        backgroundColor: 'var(--Color-Four)',
-        color: 'var(--Color-Two)',
-        width: '2rem',
-        height: '1.5rem',
-        border: 'none',
-        borderRadius: '0.25rem',
-    }
-
-    const cartButton = {
-        backgroundColor: 'var(--Color-Four)', 
-        color: 'var(--Color-Two)', 
-        border:'none',
-        padding: '1rem',
-        borderRadius: '0.25rem',
-    }
-
-
     const changeQuantity = ({target: {value}}) => {
         if(value === '+' && quantity !== details.inventory) {
             setQuantity(quantity + 1);

@@ -27,7 +27,8 @@
 }
 .store-container .categories .search-wrp input {
     border-radius: 0.25rem;
-    border: none;
+    border: 1px solid var(--Color-Three);
+    background-color: transparent;
     padding-left: 0.25rem;
     height: 2rem;
 }
@@ -49,4 +50,5 @@
     position: fixed; 
     top: 20rem;
 }
+
 
