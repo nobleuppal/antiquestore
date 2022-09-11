@@ -181,6 +181,8 @@ class StoreContainer extends React.Component {
     }
 
     cartClick = () => {
+        this.setState({productNav: null});
+        this.setState({pageHeader: null});
         this.setState({screen: <CartPage shippingClick={this.shippingClick} updateCartItems={this.updateCartItems} commerce={commerce}/>});        
     }
 

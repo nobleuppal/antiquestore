@@ -31,6 +31,7 @@ class CommerceService {
                             title: item.name,
                             description: item.description,
                             price: item.price.formatted_with_code,
+                            rawPrice: item.price.raw,
                             image: item.image.url,
                             imageName: item.image.filename,
                             Id: item.id,

@@ -40,7 +40,7 @@
     width: 100vw;
 }
 .loading {
-    color: white; 
+    color: var(--Color-Ten); 
     background-color: var(--Color-Three);
 }
 .store-container .error-message {

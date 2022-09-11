@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
+import '../stylesheets/cartpage.css';
 
 const CartPage = ({commerce, updateCartItems, shippingClick}) => {
 
     const [cartList, setCartList] = useState([]);
     const [cartTotal, setCartTotal] = useState();
+    const [rawTotal, setRawTotal] = useState();
     const [loading, setLoading] = useState(false);
     const [removing, setRemoving] = useState('Remove');
 
@@ -16,6 +18,7 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
                     setLoading(false);
                     setCartList(res.json.line_items);
                     setCartTotal(res.json.subtotal.formatted_with_code);
+                    setRawTotal(res.json.subtotal.raw);
                 })        
     }, [])
 
@@ -31,27 +34,26 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
                 );
     }
 
-    const checkoutStyle = {
-        display: 'flex', 
-        flexDirection: 'column', 
-        rowGap: '15rem', 
-        backgroundColor: 'var(--Color-Two)', 
-        color: 'var(--Color-Three)',
-        padding: '5rem',
-        marginTop: '15rem'
-    }
-               
+      
     return ( 
-        <div style={{display: 'flex'}}>
-            <div style={{width: '100vw', marginTop: '20rem', display: 'flex', flexDirection: 'column', rowGap: '1rem'}}>
+        <div className="cart-page">
+            <div className="cart-item-ctn">
                 {!loading ? (cartList.length !== 0 ? cartList.map(item => <CartItem key={item.product_id} removing={removing} itemId={item.id} removeItem={removeItem} image={item.image.url} quantity={item.quantity} name={item.name} price={item.price.formatted_with_code} fileName={item.image.fileName}/>)
                                             : <div>Empty Cart</div>)
                           : <div>Loading...</div>
                 }
             </div>
-            <div style={checkoutStyle}>
-                <button onClick={shippingClick} style={{width: '20rem', height: '3rem', backgroundColor: 'var(--Color-Five)', border: 'none'}}>Checkout</button>
-                <div>Subtotal: ${cartTotal}</div>
+            <div className="checkout-box">
+                <h6>Summary</h6>
+                <div className="checkout-costs">
+                    <div><span>Subtotal:</span> <span>${rawTotal}</span></div>
+                    <div><span>Shipping:</span> <span>${0.00}</span></div>
+                    <div><span>Tax:</span> <span>${0.00}</span></div>
+                </div>
+                <div className="total-checkout">
+                    <div className="total-cost"><span>Total:</span> <span>${rawTotal} CAD</span></div>
+                    <button onClick={shippingClick}>Checkout</button>
+                </div>
             </div>
         </div>
      );
