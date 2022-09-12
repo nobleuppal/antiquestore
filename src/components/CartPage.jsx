@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import '../stylesheets/cartpage.css';
+import times from '../assets/times-circle-solid.svg';
+
 
 const CartPage = ({commerce, updateCartItems, shippingClick}) => {
 
@@ -8,7 +10,7 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
     const [cartTotal, setCartTotal] = useState();
     const [rawTotal, setRawTotal] = useState();
     const [loading, setLoading] = useState(false);
-    const [removing, setRemoving] = useState('Remove');
+    const [removing, setRemoving] = useState(<img src={times} alt="times"/>);
 
     
     useEffect(() => {
@@ -46,12 +48,12 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
             <div className="checkout-box">
                 <h6>Summary</h6>
                 <div className="checkout-costs">
-                    <div><span>Subtotal:</span> <span>${rawTotal}</span></div>
-                    <div><span>Shipping:</span> <span>${0.00}</span></div>
-                    <div><span>Tax:</span> <span>${0.00}</span></div>
+                    <div><span>Subtotal</span> <span>${rawTotal}</span></div>
+                    <div><span>Shipping</span> <span>${0.00}</span></div>
+                    <div><span>Tax</span> <span>${0.00}</span></div>
                 </div>
                 <div className="total-checkout">
-                    <div className="total-cost"><span>Total:</span> <span>${rawTotal} CAD</span></div>
+                    <div className="total-cost"><span>Total</span> <span>${rawTotal} CAD</span></div>
                     <button onClick={shippingClick}>Checkout</button>
                 </div>
             </div>

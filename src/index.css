@@ -23,6 +23,8 @@ code {
   --Color-Eight: #a80038;
   --Color-Nine: #00446c;
   --Color-Ten: white;
+  --Color-Eleven: #0084d2;
+    opacity: 0.9;
 }
 * {
   max-width: 1440px;

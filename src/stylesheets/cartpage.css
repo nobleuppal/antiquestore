@@ -1,15 +1,17 @@
 .cart-page {
     display: flex;
+    background-color: var(--Color-Six); 
 }
 .cart-page .checkout-box {     
     display: flex;
     flex-direction: column;
-    background-color: var(--Color-Six); 
     color: var(--Color-Three);
     padding: 1rem 5rem;
     margin-top: 0rem;
-    margin-bottom: 0rem;
+    margin-bottom: 1rem;
     font-size: 1rem;
+    height: 35rem;
+    border-left: 1px solid var(--Color-Three);
 }
 .cart-page .checkout-box .checkout-costs {
     margin: 0rem 0rem auto 0rem;
@@ -24,14 +26,19 @@
 }
 .cart-page .checkout-box .checkout-costs div span:first-child {
     margin-left: 0rem;
+    font-weight: bold;
+    font-style: italic;
 }
 .cart-page .checkout-box .checkout-costs div span:last-child {
     margin-right: 0rem;
+    color: var(--Color-Ten);
 }
 .cart-page .checkout-box h6 {
-    font-weight: normal;
+    font-weight: bold;
     font-size: 1rem;
     margin-left: 0rem;
+    font-style: italic;
+    border-bottom: 1px solid var(--Color-Three);
 }
 .cart-page .checkout-box button {
     width: 15rem;
@@ -48,6 +55,7 @@
     display: flex; 
     flex-direction: column; 
     row-gap: 1rem;
+    padding: 1rem 0rem;
 }
 .checkout-box .total-cost {
     margin: auto 0rem;
@@ -55,12 +63,40 @@
 }
 .checkout-box .total-cost span:first-child {
     margin-left: 0rem;
+    font-weight: bold;
+    font-style: italic;
 }
 .checkout-box .total-cost span:last-child {
     margin-right: 0rem;
+    color: var(--Color-Ten);
 }
 .checkout-box .total-checkout {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+}
+.cart-page .cart-item {
+    display: flex;
+    color: var(--Color-Three);
+    font-size: 1rem;
+    background-color: var(--Color-Eight);
+    border-radius: 1rem;
+    column-gap: 1rem;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+    width: 40rem;
+}
+.cart-page .cart-item .item-image {
+    border-radius: 1rem;
+    width: 8rem;
+    height: 7rem;
+}
+.cart-page .cart-item .delete-item {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+.cart-page .cart-item .delete-item img {
+    width: 1rem;
+    height: 1rem;
 }
