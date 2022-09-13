@@ -9,7 +9,7 @@ const CartItem = ({image, quantity, name, price, fileName, itemId, removeItem, r
             <div>{name}</div>
             <div>${price}</div>
             <div className="item-quantity">x{quantity}</div>
-            <button onClick={removeItem} className="delete-item" id={itemId}>{removing}</button>
+            <button onClick={() => removeItem(itemId)} className="delete-item">{removing}</button>
         </div>
      );
 }

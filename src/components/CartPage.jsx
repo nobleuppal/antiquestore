@@ -24,9 +24,9 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
                 })        
     }, [])
 
-    const removeItem = ({target: {id}}) => {
+    const removeItem = (itemId) => {
         setRemoving('Removing...');
-        commerce.deleteCart(id)
+        commerce.deleteCart(itemId)
                 .then(res => {
                         console.log(res.json);
                         setRemoving('Remove');

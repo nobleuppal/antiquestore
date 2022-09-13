@@ -4,7 +4,7 @@
     display: flex;
 }
 .product-buy .item-container {
-    background-color: var(--Color-Eight);
+    background-color: var(--Color-One);
     width: 40rem;
     height: 36rem;
     border-radius: 1rem;
@@ -41,6 +41,7 @@
 .product-buy .item-info .titles div {
     font-size: 1rem;
     text-align: left;
+    color: var(--Color-Eleven);
 }
 .product-buy .item-info .quantity-btn {
     width: 3rem;
@@ -56,6 +57,7 @@
 }
 .product-buy .item-info .quantity {
     width: 3rem;
+    color: var(--Color-Eleven);
 }
 .product-buy .item-info .quantity-ctn {
     display: flex;

@@ -1,5 +1,5 @@
 .store-container {
-    background-color: var(--Color-Eight);
+    background-color: var(--Color-Ten);
 }
 .store-container .categories {
     display: flex;

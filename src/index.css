@@ -13,29 +13,31 @@ code {
 }
 
 :root {
-  --Color-One: #D4A12A;
+  --Color-One: #777674;
   --Color-Two: beige;
-  --Color-Three: black;
+  --Color-Three: #000F08;
   --Color-Four: #38383B;
   --Color-Five: #7A263A;
-  --Color-Six: #00649f;
+  --Color-Six: #8BAAAD;
   --Color-Seven: #db0049;
   --Color-Eight: #a80038;
-  --Color-Nine: #00446c;
-  --Color-Ten: white;
-  --Color-Eleven: #0084d2;
-    opacity: 0.9;
+  --Color-Nine: #1C3738;
+  --Color-Ten: #A1A4A0;
+  --Color-Eleven: #F4FFF8;
 }
 * {
   max-width: 1440px;
   margin: auto;
   padding: 0rem;
 }
-
-button {
+button, select {
   cursor: pointer;
 }
 button:hover {
-  color: var(--Color-Ten);
+  color: var(--Color-Eleven);
 }
+input:focus, select:focus {
+  outline-width: 0;
+}
+
 

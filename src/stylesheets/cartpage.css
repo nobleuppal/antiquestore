@@ -31,7 +31,7 @@
 }
 .cart-page .checkout-box .checkout-costs div span:last-child {
     margin-right: 0rem;
-    color: var(--Color-Ten);
+    color: var(--Color-Eleven);
 }
 .cart-page .checkout-box h6 {
     font-weight: bold;
@@ -68,7 +68,7 @@
 }
 .checkout-box .total-cost span:last-child {
     margin-right: 0rem;
-    color: var(--Color-Ten);
+    color: var(--Color-Eleven);
 }
 .checkout-box .total-checkout {
     display: flex;
@@ -77,9 +77,9 @@
 }
 .cart-page .cart-item {
     display: flex;
-    color: var(--Color-Three);
+    color: var(--Color-Six);
     font-size: 1rem;
-    background-color: var(--Color-Eight);
+    background-color: var(--Color-Nine);
     border-radius: 1rem;
     column-gap: 1rem;
     padding: 1rem;

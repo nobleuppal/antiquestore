@@ -25,6 +25,7 @@
 .nav-bar-bottom {
     display: flex;
     padding-top: 0rem;
+    color: var(--Color-Eleven);
 }
 .nav-bar-bottom img {
     position: relative;
@@ -49,7 +50,7 @@
     margin-left: 0rem;
 }
 .nav-bar-bottom .dummy-btn-ctn button:first-child, #log-btn {
-    background-color: var(--Color-Seven);
+    background-color: var(--Color-One);
     border: none;
     padding: 0.5rem;
     border-radius: 1rem;
@@ -57,7 +58,7 @@
 }
 .nav-bar-bottom .dummy-btn-ctn button:last-child {
     background-color: transparent;
-    border: 1px solid var(--Color-Two);
+    border: 1px solid var(--Color-Eleven);
     padding: 0.5rem;
     border-radius: 1rem;
     width: 6rem;
@@ -67,7 +68,7 @@
     height: fit-content;
 }
 .nav-bar .right-side span {
-    color: var(--Color-Two);
+    color: var(--Color-Eleven);
     background-color: var(--Color-Seven);
     border-radius: 1rem; 
     padding: 0rem 0.25rem

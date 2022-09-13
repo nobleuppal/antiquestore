@@ -7,63 +7,25 @@ import Discover from '../assets/Discover_Card_logo.png';
 import Amex from '../assets/American_Express_logo.png';
 import Credit from '../assets/credit-card-solid.svg';
 import { countryArray } from "../accounts";
+import '../stylesheets/shipping.css';
 
 const Shipping = ({commerce, confirmClick}) => {
-
-    const cardStyle = {
-        width: '3rem',
-        height: '2rem'
-    }
 
     const securityCodeLength = 3;
     const nameLength = 25;
     const codeLength = 6;
     const shipping = 0.00;
 
-    const checkoutStyle = {
-        display: 'flex', 
-        flexDirection: 'column', 
-        rowGap: '1rem', 
-        backgroundColor: 'var(--Color-Two)', 
-        color: 'var(--Color-Three)',
-        padding: '5rem',
-        marginTop: '15rem'
-    }
-
-    const inputStyle = {
-        height: '2rem',
-        width: '15rem',
-        paddingLeft: '0.25rem',
-        margin: '0rem'
-    }
-    
-    const selectStyle = {
-        height: '2rem',
-        width: '15.5rem',
-        paddingLeft: '0.25rem',
-        margin: '0rem'
-    }
-
-    const infoStyle = {
-        display: 'flex', 
-        flexDirection: 'column', 
-        rowGap: '1rem', 
-        border: '1px solid var(--Color-Four)', 
-        padding: '1rem',
-        width: '18rem',
-    }
-
-
     const [cartList, setCartList] = useState([]);
     const [cartTotal, setCartTotal] = useState();
     const [loading, setLoading] = useState(false);
-    const [cardType, setCardType] = useState(<img style={cardStyle} src={Credit} alt='credit-card-logo'/>);
+    const [cardType, setCardType] = useState(<img className="card-logo" src={Credit} alt='credit-card-logo'/>);
     const [cardLength, setCardLength] = useState(19);
     const [lastDigits, setLastDigits] = useState(null);
     const [error, setError] = useState(true);
     const [expError, setExpError] = useState(true);
     const [cardError, setCardError] = useState(true);
-    const [rawTotal, setRawTotal] = useState(1500);
+    const [rawTotal, setRawTotal] = useState();
 
 
     useEffect(() => {
@@ -84,7 +46,7 @@ const Shipping = ({commerce, confirmClick}) => {
         const regExDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}$/;
 
         if(regExMaster.test(value)) {
-            setCardType(<img style={cardStyle} src={Mastercard} alt="mastercard"/>);
+            setCardType(<img  className="card-logo" src={Mastercard} alt="mastercard"/>);
             setCardLength(16);
             let newValue = value.match(/.{1,4}/g);
             setLastDigits(newValue[3]);
@@ -92,7 +54,7 @@ const Shipping = ({commerce, confirmClick}) => {
             value = newValue.join(' '); 
         }
         else if(regExVisa.test(value)) {
-            setCardType(<img style={cardStyle} src={Visa} alt="visa"/>);
+            setCardType(<img className="card-logo" src={Visa} alt="visa"/>);
             setCardLength(16);
             let newValue = value.match(/.{1,4}/g);
             setLastDigits(newValue[3]);
@@ -100,7 +62,7 @@ const Shipping = ({commerce, confirmClick}) => {
             value = newValue.join(' ');  
         }
         else if (regExAmex.test(value)) {
-            setCardType(<img style={cardStyle} src={Amex} alt="amex"/>);
+            setCardType(<img className="card-logo" src={Amex} alt="amex"/>);
             setCardLength(15);
             let newValue = value.match(/.{1,4}/g);
             setLastDigits(newValue[3]);
@@ -108,7 +70,7 @@ const Shipping = ({commerce, confirmClick}) => {
             value = newValue.join(' '); 
         }
         else if (regExDiscover.test(value)) {
-            setCardType(<img style={cardStyle} src={Discover} alt="discover"/>);
+            setCardType(<img className="card-logo" src={Discover} alt="discover"/>);
             setCardLength(16);
             let newValue = value.match(/.{1,4}/g);
             setLastDigits(newValue[3]);
@@ -141,38 +103,47 @@ const Shipping = ({commerce, confirmClick}) => {
     }
     
     return ( 
-        <div style={{display: 'flex'}}>
-            <form style={{width: '100vw', marginTop: '20rem', display: 'flex', flexDirection: 'column', rowGap: '1rem'}}>
-            <h2>Shipping Address</h2>
-            <div style={infoStyle}>
-                <input onChange={(e) => errorCheck(e)} maxLength={nameLength} type='text' id='first-name' name="first-name" style={inputStyle} placeholder="First Name"/>
-                <input onChange={(e) => errorCheck(e)} maxLength={nameLength} type='text' id='last-name' name="last-name" style={inputStyle} placeholder="Last Name"/>
-            </div>
-            <div style={infoStyle}>
-                <input onChange={(e) => errorCheck(e)} type='text' id='address' name="address" style={inputStyle} placeholder='Address'/>
-                <input onChange={(e) => errorCheck(e)} type='text' id="city" name="city" style={inputStyle} placeholder='City'/>
-                <input onChange={(e) => errorCheck(e)} type='text' id='prov-state' name="prov-state" style={inputStyle} placeholder='Province/State'/>
-                <input onChange={(e) => errorCheck(e)} maxLength={codeLength} type='text' id="post-zip" name="post-zip" style={inputStyle} placeholder='Post Code/Zip Code'/>
-                <select style={selectStyle}>
-                    {countryArray.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}
-                </select>                   
-            </div>
+        <div className="shipping">
+            <form className="shipping-info">
+                <h2>Shipping Address</h2>
+                <div className="name-ctn">
+                    <input onChange={(e) => errorCheck(e)} maxLength={nameLength} type='text' id='first-name' name="first-name" placeholder="First Name"/>
+                    <input onChange={(e) => errorCheck(e)} maxLength={nameLength} type='text' id='last-name' name="last-name" placeholder="Last Name"/>
+                </div>
+                <div className="address-ctn">
+                    <input onChange={(e) => errorCheck(e)} type='text' id='address' name="address" placeholder='Address'/>
+                    <input onChange={(e) => errorCheck(e)} type='text' id="city" name="city" placeholder='City'/>
+                </div>
+                <div className="location-ctn">
+                    <input onChange={(e) => errorCheck(e)} type='text' id='prov-state' name="prov-state" placeholder='Province/State'/>
+                    <input onChange={(e) => errorCheck(e)} maxLength={codeLength} type='text' id="post-zip" name="post-zip" placeholder='Post Code/Zip Code'/>
+                    <select>
+                        {countryArray.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}
+                    </select>                   
+                </div>
 
-            <h2>Secure Payment</h2>
-            <div style={infoStyle}>
-                    <div style={{margin: '0rem', display: 'flex'}}><input maxLength={cardLength} onChange={e => numberCheck(e)} style={inputStyle} placeholder='Card Number'/>{cardType}</div>
-                    <input onChange={e => expirationCheck(e)} style={inputStyle} placeholder='Exp Date (MM / YY)'/>
-                    <input type='number' maxLength={securityCodeLength} style={inputStyle} placeholder='Security Code'/>
-            </div>
+                <h2>Secure Payment</h2>
+                <div className="card-ctn">
+                    <div className="card-number"><input maxLength={cardLength} onChange={e => numberCheck(e)} placeholder='Card Number'/>{cardType}</div>
+                    <div className="security-ctn">
+                        <input onChange={e => expirationCheck(e)} placeholder='Exp Date (MM / YY)'/>
+                        <input type='number' maxLength={securityCodeLength} placeholder='Security Code'/>
+                    </div>
+                </div>
             </form>
-            <div style={checkoutStyle}>
-                <div style={{width: '30rem'}}>
+            <div className="checkout-box">
+                <div className="item-list">
                     {!loading ? cartList.map(item => <CheckoutItem key={item.product_id} image={item.image.url} quantity={item.quantity} name={item.name} price={item.price.formatted_with_code} fileName={item.image.fileName}/>)                              
                               : <div>Loading...</div>
                     }
                 </div>
-                <div style={{margin: '0rem', textAlign: 'left'}}>Items: ${cartTotal}</div>
-                <button onClick={() => confirmClick(error, expError, cardError, lastDigits)} style={{width: '20rem', height: '3rem', backgroundColor: 'var(--Color-Five)', border: 'none'}}>Pay</button>
+                <div className="item-costs">
+                    <div>Subtotal: ${rawTotal}</div>
+                    <div>Shipping: ${0}</div>
+                    <div>Tax: ${0}</div>
+                    <div>Total: ${cartTotal}</div>
+                    <button onClick={() => confirmClick(error, expError, cardError, lastDigits)}>Pay</button>
+                </div>
             </div>
         </div>
      );

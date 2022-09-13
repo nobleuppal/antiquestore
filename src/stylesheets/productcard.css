@@ -6,6 +6,7 @@
     height: 16rem;
     padding: 1rem;
     cursor: pointer;
+    color: var(--Color-Six);
 }
 .product-card img {
     border-radius: 8rem;
