@@ -45,6 +45,7 @@ class StoreContainer extends React.Component {
         this.setState({loading: true});
         commerce.allDetails().then((res) => {
             console.log(res);
+            console.log(res.response.ok);
             if(res && res.response.ok) {
                 this.setState({
                     details: res.details,
@@ -66,7 +67,6 @@ class StoreContainer extends React.Component {
                                 </div>, 
                     screen: <div className="product-ctn">
                                 {!this.state.loading ? this.state.details
-                                    .filter(product => {return product.category === this.state.page || this.state.page === null || product.category.toLowerCase().includes(this.state.page) || product.title.toLowerCase().includes(this.state.page)})
                                     .map(item => (
                                             <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
                                         ))
@@ -132,7 +132,6 @@ class StoreContainer extends React.Component {
 
         this.setState({screen: <div className="product-ctn">
                                     {!this.state.loading ? this.state.details
-                                        .filter(product => {return product.category === this.state.page || this.state.page === null || product.category.toLowerCase().includes(this.state.page) || product.title.toLowerCase().includes(this.state.page)})
                                         .map(item => (
                                                 <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
                                             ))
