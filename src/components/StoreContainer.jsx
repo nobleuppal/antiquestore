@@ -15,31 +15,26 @@ const commerce = new CommerceService();
 
 
 class StoreContainer extends React.Component {
+    constructor() {
+        super();
+        this.lastDigits = null;
+        this.page = null;
+        this.productDetails = null;
+    }
     state = {
         details: [],
         error: false,
         loading: false,
-        page: null,
         cartItems: 0,
         modal: null,
         isAccount: false,
         greeting: 'Account',
         match: null,
         errorMessage: null,
-        pageHeader: <div className="nav-bar-bottom">
-                        <div>
-                            <p>THESE ARE VINTAGE ITEMS</p>
-                            <h3>POSSESSED BY THE BIGGEST <br/> NAMES IN HISTORY</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/> Fusce id est gravida</p>
-                            <div className="dummy-btn-ctn">
-                                <button>Buy Now</button>
-                                <button>Read More</button>
-                            </div>
-                        </div>
-                        <img src={flowersPhoto} alt="antique-stock"/>
-                    </div>,
+        screenOne: 'homeHeader',
+        screenTwo: 'productNav',
+        screenThree: 'productCtn',
     }
-
 
     componentDidMount() {
         this.setState({loading: true});
@@ -50,29 +45,7 @@ class StoreContainer extends React.Component {
                 this.setState({
                     details: res.details,
                     loading: false,           
-                    search: <img onClick={() => this.getBar()} src={searchLogo} alt="search"/>,
-                    productNav: <div className="categories">
-                                    <div>Products</div>
-                                    <div>
-                                        <div className="search-wrp">
-                                            <input onChange={(e) => this.filterContainer(e)} type="text"/>
-                                        </div> 
-                                        <button type="button" value="all" onClick={(e) => this.filterContainer(e)}>All</button>
-                                        <button type="button" value="Watches" onClick={(e) => this.filterContainer(e)}>Watches</button>
-                                        <button type="button" value="Clocks" onClick={(e) => this.filterContainer(e)}>Clocks</button>
-                                        <button type="button" value="Necklaces" onClick={(e) => this.filterContainer(e)}>Necklaces</button>
-                                        <button type="button" value="Shoes" onClick={(e) => this.filterContainer(e)}>Shoes</button>
-                                        <button type="button" value="Instruments" onClick={(e) => this.filterContainer(e)}>Instruments</button>                      
-                                    </div>        
-                                </div>, 
-                    screen: <div className="product-ctn">
-                                {!this.state.loading ? this.state.details
-                                    .map(item => (
-                                            <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
-                                        ))
-                                    : <div className="loading">Loading...</div>
-                                }
-                            </div>
+                    search: <img onClick={() => this.getBar()} src={searchLogo} alt="search"/>,           
                 });
             } else {
                 this.setState({loading: false});
@@ -86,22 +59,15 @@ class StoreContainer extends React.Component {
     }
 
     filterContainer = ({target: {value}}) => {
-        this.setState({page: value.toLowerCase()});
-        this.setState({screen: <div className="product-ctn">
-                                        {!this.state.loading ? this.state.details
-                                            .filter(product => {return product.category === value || value === 'all' || value === null || product.category.toLowerCase().includes(value.toLowerCase()) || product.title.toLowerCase().includes(value.toLowerCase())})
-                                            .map(item => (
-                                                    <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
-                                                ))
-                                        : <div className="loading">Loading...</div>
-                                        }
-                               </div>});
+        this.page = value.toLowerCase();
+        this.setState({screenThree: 'productCtn'});
     }
 
     buyProduct = (details) => {
-       this.setState({productNav: null});
-       this.setState({screen: <ProductBuy updateCartItems={this.updateCartItems} commerce={commerce} changeQuantity={this.changeQuantity}  details={details}/>});
-       this.setState({pageHeader: null});
+       this.productDetails = details; 
+       this.setState({screenTwo: null});
+       this.setState({screenThree: null});
+       this.setState({screenOne: 'productBuy'});
     }
 
     toLogin = () => {
@@ -109,7 +75,7 @@ class StoreContainer extends React.Component {
             this.setState({modal: null});
         }
         else if(this.state.modal === null) {
-            this.setState({modal: <LogIn match={this.state.match} updateAccounts={this.updateAccounts} checkAccounts={this.checkAccounts} toLogIn={this.toLogin}/>});
+            this.setState({modal: 'logIn'});
         }
         else {
             this.setState({modal: null});
@@ -117,43 +83,10 @@ class StoreContainer extends React.Component {
     }
 
     toHome = () => {   
-        this.setState({pageHeader: <div className="nav-bar-bottom">
-                                        <div>
-                                            <p>THESE ARE VINTAGE ITEMS</p>
-                                            <h3>POSSESSED BY THE BIGGEST <br/> NAMES IN HISTORY</h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/> Fusce id est gravida</p>
-                                            <div className="dummy-btn-ctn">
-                                                <button>Buy Now</button>
-                                                <button>Read More</button>
-                                            </div>
-                                        </div>
-                                        <img src={flowersPhoto} alt="antique-stock"/>
-                                    </div>})
-
-        this.setState({screen: <div className="product-ctn">
-                                    {!this.state.loading ? this.state.details
-                                        .map(item => (
-                                                <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
-                                            ))
-                                        : <div className="loading">Loading...</div>
-                                    }
-                                </div>})
-
-        this.setState({productNav: <div className="categories">
-                                        <div>Products</div>
-                                        <div>
-                                            <div className="search-wrp">
-                                                <input onChange={(e) => this.filterContainer(e)} type="text"/>
-                                            </div> 
-                                            <button type="button" value="all" onClick={(e) => this.filterContainer(e)}>All</button>
-                                            <button type="button" value="Watches" onClick={(e) => this.filterContainer(e)}>Watches</button>
-                                            <button type="button" value="Clocks" onClick={(e) => this.filterContainer(e)}>Clocks</button>
-                                            <button type="button" value="Necklaces" onClick={(e) => this.filterContainer(e)}>Necklaces</button>
-                                            <button type="button" value="Shoes" onClick={(e) => this.filterContainer(e)}>Shoes</button>
-                                            <button type="button" value="Instruments" onClick={(e) => this.filterContainer(e)}>Instruments</button>                      
-                                        </div>        
-                                    </div>})
-                    }
+        this.setState({screenOne: 'homeHeader'});
+        this.setState({screenThree: 'productCtn'});
+        this.setState({screenTwo: 'productNav'});
+    }            
 
     updateCartItems = (totalItems) => {
         this.setState({cartItems: totalItems});
@@ -180,18 +113,19 @@ class StoreContainer extends React.Component {
     }
 
     cartClick = () => {
-        this.setState({productNav: null});
-        this.setState({pageHeader: null});
-        this.setState({screen: <CartPage shippingClick={this.shippingClick} updateCartItems={this.updateCartItems} commerce={commerce}/>});        
+        this.setState({screenTwo: null});
+        this.setState({screenOne: 'cartPage'});
+        this.setState({screenThree: null});        
     }
 
     shippingClick = () => {
-        this.setState({screen: <Shipping confirmClick={this.confirmClick} commerce={commerce}/>})
+        this.setState({screenOne: 'shipping'});
     }
 
     confirmClick = (error, expError, cardError, lastDigits) => {
         if(!error && !expError && !cardError) {
-            this.setState({screen: <Confirmation lastDigits={lastDigits}/>});
+            this.lastDigits = lastDigits;
+            this.setState({screenOne: 'confirmation'});
             this.setState({errorMessage: null});
         }
         else {
@@ -200,15 +134,90 @@ class StoreContainer extends React.Component {
     }
 
     render() {                 
-        const {screen, cartItems, modal, greeting, errorMessage, productNav, pageHeader} = this.state;
+        const {cartItems, greeting, errorMessage, screenTwo, screenOne, screenThree, modal} = this.state;
 
+        let screenOneDisplay;
+        let screenTwoDisplay;
+        let screenThreeDisplay;
+        let modalDisplay;
+
+        if(screenThree === 'productCtn') {
+            screenThreeDisplay = <div className="product-ctn">{
+                                        !this.state.loading ? this.state.details
+                                        .filter(product => {return product.category === this.page || this.page === 'all' || this.page === null || product.category.toLowerCase().includes(this.page) || product.title.toLowerCase().includes(this.page)})
+                                        .map(item => (
+                                                <ProductCard buyProduct={this.buyProduct} key={item.Id} details={item}/>
+                                            ))
+                                        : <div className="loading">Loading...</div>
+                                    }
+                                 </div>
+        }
+        else if (screenThree === null) {
+            screenThreeDisplay = null;
+        }
+
+        if(screenTwo === 'productNav') {
+            screenTwoDisplay =  <div className="categories">
+                                    <div>Products</div>
+                                    <div>
+                                        <div className="search-wrp">
+                                            <input onChange={(e) => this.filterContainer(e)} type="text"/>
+                                        </div> 
+                                        <button type="button" value="all" onClick={(e) => this.filterContainer(e)}>All</button>
+                                        <button type="button" value="Watches" onClick={(e) => this.filterContainer(e)}>Watches</button>
+                                        <button type="button" value="Clocks" onClick={(e) => this.filterContainer(e)}>Clocks</button>
+                                        <button type="button" value="Necklaces" onClick={(e) => this.filterContainer(e)}>Necklaces</button>
+                                        <button type="button" value="Shoes" onClick={(e) => this.filterContainer(e)}>Shoes</button>
+                                        <button type="button" value="Instruments" onClick={(e) => this.filterContainer(e)}>Instruments</button>                      
+                                    </div>        
+                                </div>
+        }
+        else if (screenTwo === null) {
+            screenTwoDisplay = null;
+        }
+          
+        if(screenOne === 'homeHeader') {        
+            screenOneDisplay = <div className="home-header">
+                                    <div>
+                                        <p>THESE ARE VINTAGE ITEMS</p>
+                                        <h3>POSSESSED BY THE BIGGEST <br/> NAMES IN HISTORY</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/> Fusce id est gravida</p>
+                                        <div className="dummy-btn-ctn">
+                                            <button>Buy Now</button>
+                                            <button>Read More</button>
+                                        </div>
+                                    </div>
+                                    <img src={flowersPhoto} alt="antique-stock"/>
+                                </div>
+        }
+        else if(screenOne === 'productBuy') {
+            screenOneDisplay = <ProductBuy updateCartItems={this.updateCartItems} commerce={commerce} changeQuantity={this.changeQuantity}  details={this.productDetails}/>
+        }
+        else if(screenOne === 'cartPage') {
+            screenOneDisplay = <CartPage shippingClick={this.shippingClick} updateCartItems={this.updateCartItems} commerce={commerce}/>
+        }
+        else if(screenOne === 'shipping') {
+            screenOneDisplay = <Shipping confirmClick={this.confirmClick} commerce={commerce}/>
+        }
+        else if (screenOne === 'confirmation') {
+            screenOneDisplay = <Confirmation lastDigits={this.lastDigits}/>
+        }
+
+        if(modal === 'logIn') {
+            modalDisplay = <LogIn match={this.state.match} updateAccounts={this.updateAccounts} checkAccounts={this.checkAccounts} toLogIn={this.toLogin}/>
+        }
+        else if(modal === null) {
+            modalDisplay = null;
+        }
+                       
         return(
             <div className="store-container">
-                <Navbar toHome={this.toHome} newPageHeader={pageHeader} greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogin} cartItems={cartItems}/>    
-                <>{productNav}</>       
-                <>{modal}</>
+                <Navbar toHome={this.toHome} greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogin} cartItems={cartItems}/>    
+                <>{screenOneDisplay}</>       
+                <>{modalDisplay}</>
                 <div className="error-message">{errorMessage}</div>           
-                <>{screen}</>
+                <>{screenTwoDisplay}</>
+                <>{screenThreeDisplay}</>
             </div>
         );
     }

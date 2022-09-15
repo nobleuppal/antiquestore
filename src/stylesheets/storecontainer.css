@@ -32,7 +32,7 @@
     padding-left: 0.25rem;
     height: 2rem;
 }
-.product-ctn {
+.store-container .product-ctn {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     row-gap: 1rem;
@@ -49,6 +49,48 @@
     color: var(--Color-Two); 
     position: fixed; 
     top: 20rem;
+}
+.store-container .home-header {
+    display: flex;
+    padding-top: 0rem;
+    color: var(--Color-Eleven);
+    background-color: var(--Color-Six);
+}
+.store-container .home-header img {
+    position: relative;
+    top: 5rem;
+}
+.store-container .home-header > div {
+    text-align: left;
+}
+.store-container .home-header p, .store-container .home-header h3 {
+    align-self: flex-start;
+    margin-bottom: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+}
+.store-container .home-header h3 {
+    font-weight: 500;
+    font-size: 2rem;
+}
+.store-container .home-header .dummy-btn-ctn {
+    display: flex;
+    width: 15rem;
+    margin-left: 0rem;
+}
+.store-container .home-header .dummy-btn-ctn button:first-child, #log-btn {
+    background-color: var(--Color-One);
+    border: none;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    width: 6rem;
+}
+.store-container .home-header .dummy-btn-ctn button:last-child {
+    background-color: transparent;
+    border: 1px solid var(--Color-Eleven);
+    padding: 0.5rem;
+    border-radius: 1rem;
+    width: 6rem;
 }
 
 

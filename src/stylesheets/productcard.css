@@ -13,3 +13,9 @@
     width: 14rem;
     height: 13rem;
 }
+.product-card div, .product-card p {
+    text-align: left;
+}
+.product-card p {
+    font-size: 0.75rem;
+}
