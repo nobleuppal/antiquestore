@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import '../stylesheets/cartpage.css';
-import times from '../assets/times-circle-solid.svg';
 
 
 const CartPage = ({commerce, updateCartItems, shippingClick}) => {
@@ -10,7 +9,7 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
     const [cartTotal, setCartTotal] = useState();
     const [rawTotal, setRawTotal] = useState();
     const [loading, setLoading] = useState(false);
-    const [removing, setRemoving] = useState(<img src={times} alt="times"/>);
+    const [removing, setRemoving] = useState(false);
 
     
     useEffect(() => {
@@ -25,22 +24,24 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
     }, [])
 
     const removeItem = (itemId) => {
-        setRemoving('Removing...');
+        setRemoving(true);
         commerce.deleteCart(itemId)
                 .then(res => {
-                        console.log(res.json);
-                        setRemoving('Remove');
+                        console.log(res);
+                        setRemoving(false);
                         updateCartItems(res.json.cart.total_items);
                         setCartList(res.json.cart.line_items);
+                        setRawTotal(res.json.cart.subtotal.raw);
                     }
                 );
     }
+
 
       
     return ( 
         <div className="cart-page">
             <div className="cart-item-ctn">
-                {!loading ? (cartList.length !== 0 ? cartList.map(item => <CartItem key={item.product_id} removing={removing} itemId={item.id} removeItem={removeItem} image={item.image.url} quantity={item.quantity} name={item.name} price={item.price.formatted_with_code} fileName={item.image.fileName}/>)
+                {!loading ? (cartList.length !== 0 ? cartList.map(item => <CartItem key={item.product_id} itemId={item.id} removeItem={removeItem} image={item.image.url} quantity={item.quantity} name={item.name} price={item.price.formatted_with_code} fileName={item.image.fileName}/>)
                                             : <div>Empty Cart</div>)
                           : <div>Loading...</div>
                 }

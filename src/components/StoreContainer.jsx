@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Navbar from "./Navbar";
 import ProductBuy from "./ProductBuy";
 import ProductCard from "./ProductCard";
@@ -204,7 +204,7 @@ class StoreContainer extends React.Component {
         }
 
         if(modal === 'logIn') {
-            modalDisplay = <LogIn match={this.state.match} updateAccounts={this.updateAccounts} checkAccounts={this.checkAccounts} toLogIn={this.toLogin}/>
+            modalDisplay = <LogIn match={this.state.match} updateAccounts={this.updateAccounts} checkAccounts={this.checkAccounts} toLogIn={this.toLogIn}/>
         }
         else if(modal === null) {
             modalDisplay = null;
@@ -212,7 +212,7 @@ class StoreContainer extends React.Component {
                        
         return(
             <div className="store-container">
-                <Navbar toHome={this.toHome} greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogin} cartItems={cartItems}/>    
+                <Navbar toHome={this.toHome} greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogIn} cartItems={cartItems}/>    
                 <>{screenOneDisplay}</>       
                 <>{modalDisplay}</>
                 <div className="error-message">{errorMessage}</div>           
