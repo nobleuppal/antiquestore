@@ -14,18 +14,24 @@ const Shipping = ({commerce, confirmClick}) => {
     const securityCodeLength = 3;
     const nameLength = 25;
     const codeLength = 6;
+    const expLength = 5;
     const shipping = 0.00;
 
     const [cartList, setCartList] = useState([]);
     const [cartTotal, setCartTotal] = useState();
     const [loading, setLoading] = useState(false);
-    const [cardType, setCardType] = useState(<img className="card-logo" src={Credit} alt='credit-card-logo'/>);
+    const [cardType, setCardType] = useState(Credit);
+    const [cardNumber, setCardNumber] = useState('');
     const [cardLength, setCardLength] = useState(19);
     const [lastDigits, setLastDigits] = useState(null);
     const [error, setError] = useState(true);
     const [expError, setExpError] = useState(true);
     const [cardError, setCardError] = useState(true);
     const [rawTotal, setRawTotal] = useState();
+    const [expDate, setExpDate] = useState('00/00');
+    const [securityCode, setSecurityCode] = useState('###');
+    const [secError, setSecError] = useState(true);
+
 
 
     useEffect(() => {
@@ -44,52 +50,83 @@ const Shipping = ({commerce, confirmClick}) => {
         const regExVisa = /^4[0-9]{15}$/;
         const regExAmex = /^3[47][0-9]{13}$/;
         const regExDiscover = /^6(?:011|5[0-9]{2})[0-9]{12}$/;
+        let cardSpacerSixteen;
+        let cardSpacerFifteen;
+
+        setCardNumber(value);
+
+        if (value.length === 16) {
+            const block = value.substring(0,4);
+            const blockTwo = value.substring(4,8);
+            const blockThree = value.substring(8,12);
+            const blockFour = value.substring(12,16);
+            cardSpacerSixteen = block.concat(' ').concat(blockTwo).concat(' ').concat(blockThree).concat(' ').concat(blockFour);
+        }
+        else if (value.length === 15) {
+            const block = value.substring(0,4);
+            const blockTwo = value.substring(4,10);
+            const blockThree = value.substring(10,15);
+            cardSpacerFifteen = block.concat(' ').concat(blockTwo).concat(' ').concat(blockThree);
+        }
 
         if(regExMaster.test(value)) {
-            setCardType(<img  className="card-logo" src={Mastercard} alt="mastercard"/>);
-            setCardLength(16);
+            console.log(value);
+            setCardNumber(cardSpacerSixteen);
+            setCardType(Mastercard);
+            setCardLength(19);
             let newValue = value.match(/.{1,4}/g);
             setLastDigits(newValue[3]);
-            setCardError(false);
-            value = newValue.join(' '); 
+            setCardError(false);         
         }
         else if(regExVisa.test(value)) {
-            setCardType(<img className="card-logo" src={Visa} alt="visa"/>);
-            setCardLength(16);
+            setCardNumber(cardSpacerSixteen);
+            setCardType(Visa);
+            setCardLength(19);
             let newValue = value.match(/.{1,4}/g);
             setLastDigits(newValue[3]);
-            setCardError(false);
-            value = newValue.join(' ');  
+            setCardError(false);           
         }
         else if (regExAmex.test(value)) {
-            setCardType(<img className="card-logo" src={Amex} alt="amex"/>);
-            setCardLength(15);
+            setCardNumber(cardSpacerFifteen);
+            setCardType(Amex);
+            setCardLength(17);
             let newValue = value.match(/.{1,4}/g);
             setLastDigits(newValue[3]);
             setCardError(false);
-            value = newValue.join(' '); 
+           
         }
         else if (regExDiscover.test(value)) {
-            setCardType(<img className="card-logo" src={Discover} alt="discover"/>);
-            setCardLength(16);
+            setCardNumber(cardSpacerSixteen);
+            setCardType(Discover);
+            setCardLength(19);
             let newValue = value.match(/.{1,4}/g);
             setLastDigits(newValue[3]);
             setCardError(false);
-            value = newValue.join(' '); 
         }
         else {
-            setCardType(null);
+            setCardType(Credit);
             setCardError(true);
         }
     }
 
     const expirationCheck = ({target: {value}}) => {
         const regExExp = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
+        setExpDate(value);
+
+        const text = value.substring(0,2);
+        const textTwo = value.substring(2);
+
         if(!regExExp.test(value)) {
             setExpError(true);
         }
         else {
             setExpError(false);
+            if(value[2] !== '/')  {   
+                setExpDate(text.concat('/').concat(textTwo));
+            }
+            else {
+                setExpDate(text.concat(textTwo));                
+            }
         }
     }
 
@@ -100,6 +137,20 @@ const Shipping = ({commerce, confirmClick}) => {
         else {
             setError(false);
         }
+    }
+
+    const securityCheck = ({target: {value}}) => {
+        const regExCvv = /^[0-9]{3}$/;
+        setSecurityCode(value);
+
+        if(!regExCvv.test(value)) {
+            setSecError(true);
+        }
+        else {
+            setSecError(false);
+            setSecError(value);
+        }
+        
     }
     
     return ( 
@@ -124,10 +175,10 @@ const Shipping = ({commerce, confirmClick}) => {
 
                 <h2>Secure Payment</h2>
                 <div className="card-ctn">
-                    <div className="card-number"><input maxLength={cardLength} onChange={e => numberCheck(e)} placeholder='Card Number'/>{cardType}</div>
+                    <div className="card-number"><input type='text' value={cardNumber} maxLength={cardLength} onChange={e => numberCheck(e)} placeholder='Card Number'/><img className="card-logo" src={cardType} alt="card-logo"/></div>
                     <div className="security-ctn">
-                        <input onChange={e => expirationCheck(e)} placeholder='Exp Date (MM / YY)'/>
-                        <input type='number' maxLength={securityCodeLength} placeholder='Security Code'/>
+                        <input maxLength={expLength} type="text" value={expDate} onChange={e => expirationCheck(e)} placeholder='Exp Date (MM / YY)'/>
+                        <input value={securityCode} type='text' onChange={e => securityCheck(e)} maxLength={securityCodeLength} placeholder='Security Code'/>
                     </div>
                 </div>
             </form>
