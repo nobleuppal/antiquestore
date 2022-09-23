@@ -30,7 +30,6 @@ class StoreContainer extends React.Component {
         isAccount: false,
         greeting: 'Account',
         match: null,
-        errorMessage: null,
         screenOne: 'homeHeader',
         screenTwo: 'productNav',
         screenThree: 'productCtn',
@@ -122,15 +121,9 @@ class StoreContainer extends React.Component {
         this.setState({screenOne: 'shipping'});
     }
 
-    confirmClick = (error, expError, cardError, lastDigits) => {
-        if(!error && !expError && !cardError) {
-            this.lastDigits = lastDigits;
-            this.setState({screenOne: 'confirmation'});
-            this.setState({errorMessage: null});
-        }
-        else {
-            this.setState({errorMessage: 'Error: 1 or more fields are not filled correctly'});
-        }
+    confirmClick = (lastDigits) => {
+        this.lastDigits = lastDigits;
+        this.setState({screenOne: 'confirmation'});
     }
 
     render() {                 

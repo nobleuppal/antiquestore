@@ -7,6 +7,8 @@
 .card-logo {
     width: 3rem;
     height: 2rem;
+    margin: 0rem;
+    align-self:center;
 }
 .shipping .checkout-box {
     display: flex;
@@ -92,15 +94,17 @@
 .shipping .shipping-info input, .shipping .shipping-info select {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--Color-Three);
     height: 2rem;
     width: 15rem;
     padding-left: 0.25rem;
     margin: 0rem;
+    border-bottom: 1px solid var(--Color-Three);
 }
 .shipping .shipping-info .name-ctn, .shipping .shipping-info .location-ctn, .shipping .shipping-info .address-ctn {
     display: flex;
     column-gap: 1rem;
+    margin: 0rem;
+    justify-content: left;
 }
 .shipping .shipping-info .card-ctn {
     display: flex;
@@ -111,11 +115,17 @@
     display: flex;
     column-gap: 1rem;
 }
-.shipping .shipping-info .card-number {
-    margin: 0rem; 
+.shipping .shipping-info .card-ctn .security-ctn div {
+    width: fit-content;
+}
+.shipping .shipping-info .card-number-ctn {
+    width: fit-content;
+}
+.shipping .shipping-info .card-number-ctn div {
+    margin: 0rem;
     display: flex;
 }
-.shipping .shipping-info .card-number img {
+.shipping .shipping-info .card-number-ctn img {
     margin: 0rem;
 }
 .shipping .shipping-info h2 {
@@ -125,3 +135,27 @@
     font-style: italic;
     border-bottom: 1px solid var(--Color-Three);
 }
+.shipping .shipping-info div div {
+    margin: 0rem;
+}
+.shipping .shipping-info p {
+    visibility: hidden;
+    font-size: 0.75rem;
+    padding: 0.5rem;
+}
+
+.shipping .shipping-info .first-error,
+.shipping .shipping-info .last-error, 
+.shipping .shipping-info .address-error, 
+.shipping .shipping-info .city-error, 
+.shipping .shipping-info .province-error, 
+.shipping .shipping-info .post-error,
+.shipping .shipping-info .card-ctn .card-number-error,
+.shipping .shipping-info .card-ctn .security-ctn .expiration-error,
+.shipping .shipping-info .card-ctn .security-ctn .security-error
+{
+    background-color: var(--Color-Eight);
+    color: var(--Color-Eleven);
+    visibility: visible;
+}
+
