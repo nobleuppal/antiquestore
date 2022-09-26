@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import CartItem from "./CartItem";
 import CheckoutItem from "./CheckoutItem";
 import Mastercard from '../assets/Mastercard-logo.jpeg';
 import Visa from '../assets/visa_logo.png';
