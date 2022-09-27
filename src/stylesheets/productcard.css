@@ -2,20 +2,46 @@
     font-size: 1rem;
     border-radius: 1rem;
     background-color: var(--Color-Nine);
-    width: 18rem;
-    height: 16rem;
+    width: 20vw;
+    height: 14rem;
     padding: 1rem;
     cursor: pointer;
     color: var(--Color-Six);
 }
 .product-card img {
     border-radius: 8rem;
-    width: 14rem;
-    height: 13rem;
+    width: 14vw;
+    height: 13vw;
 }
 .product-card div, .product-card p {
     text-align: left;
 }
 .product-card p {
     font-size: 0.75rem;
+}
+@media all and (max-width: 1024px) {
+    .product-card {
+        width: 15rem;
+        height: 15rem;
+    }
+    .product-card img {
+        width: 10rem;
+        height: 10rem;
+    }
+}
+@media all and (max-width: 768px) {
+    .product-card {
+        width: 25rem;
+        height: 25rem;
+    }
+    .product-card img {
+        width: 18rem;
+        height: 18rem;
+    }
+    .product-card div {
+        font-size: 1.5rem;
+    }
+    .product-card p {
+        font-size: 1rem;
+    }
 }

@@ -11,6 +11,8 @@ import Confirmation from "./Confirmation";
 import '../stylesheets/storecontainer.css';
 import searchLogo from '../assets/search.svg';
 import flowersPhoto from '../assets/flowers.png';
+import hamburgerLogo from '../assets/hamburger.svg';
+import times from '../assets/times-circle-solid.svg';
 const commerce = new CommerceService();
 
 
@@ -20,6 +22,7 @@ class StoreContainer extends React.Component {
         this.lastDigits = null;
         this.page = null;
         this.productDetails = null;
+        this.menuChangeWidth = 768;
     }
     state = {
         details: [],
@@ -33,6 +36,8 @@ class StoreContainer extends React.Component {
         screenOne: 'homeHeader',
         screenTwo: 'productNav',
         screenThree: 'productCtn',
+        windowWidth: window.innerWidth,
+        menuPop: 'hamburger',
     }
 
     componentDidMount() {
@@ -126,13 +131,63 @@ class StoreContainer extends React.Component {
         this.setState({screenOne: 'confirmation'});
     }
 
+    handleWindowResize = () => {
+        this.setState({windowWidth: window.innerWidth});
+        if(window.innerWidth > 768) {
+            this.closeMenu();
+        }
+    }
+
+    popOutMenu = () => {
+        this.setState({menuPop: 'options'});
+    }
+
+    closeMenu = () => {
+        this.setState({menuPop: 'hamburger'});
+    }
+
     render() {                 
-        const {cartItems, greeting, errorMessage, screenTwo, screenOne, screenThree, modal} = this.state;
+        const {cartItems, greeting, screenTwo, screenOne, screenThree, modal, windowWidth, menuPop} = this.state;
 
         let screenOneDisplay;
         let screenTwoDisplay;
         let screenThreeDisplay;
         let modalDisplay;
+        let navBarMenu;
+     
+        let menuOptions =  <> 
+                                <button onClick={() => this.toHome()}>Home</button>
+                                <button>About us</button>
+                                <button>Feature</button>
+                                <button>Blog</button>
+                                <button>Contact us</button>
+                                <button id="log-btn" onClick={() => this.toLogIn()}>{greeting}</button>
+                           </>
+        let menuOptionsPop = <div className="pop-ctn">
+                                <img onClick={() => this.closeMenu()} className="times-logo" src={times} alt="times"/>
+                                <div className="pop-options"> 
+                                    <button onClick={() => this.toHome()}>Home</button>
+                                    <button>About us</button>
+                                    <button>Feature</button>
+                                    <button>Blog</button>
+                                    <button>Contact us</button>
+                                    <button id="log-btn" onClick={() => this.toLogIn()}>{greeting}</button>
+                                </div>
+                            </div>
+        let hamburger = <img className="hamburger" onClick={() => this.popOutMenu()} src={hamburgerLogo} alt="hamburger-logo"/>
+
+
+        window.addEventListener('resize', this.handleWindowResize);
+
+        if(windowWidth < 768 && (menuPop === 'hamburger')) {
+            navBarMenu = hamburger;
+        }
+        else if (windowWidth > 768) {
+            navBarMenu = menuOptions;            
+        }
+        else if ((windowWidth < 768) && (menuPop === 'options')) {
+            navBarMenu = menuOptionsPop;
+        }
 
         if(screenThree === 'productCtn') {
             screenThreeDisplay = <div className="product-ctn">{
@@ -205,10 +260,9 @@ class StoreContainer extends React.Component {
                        
         return(
             <div className="store-container">
-                <Navbar toHome={this.toHome} greeting={greeting} cartClick={this.cartClick} toLogIn={this.toLogIn} cartItems={cartItems}/>    
+                <Navbar navBarMenu={navBarMenu} cartClick={this.cartClick}  cartItems={cartItems}/>    
                 <>{screenOneDisplay}</>       
-                <>{modalDisplay}</>
-                <div className="error-message">{errorMessage}</div>           
+                <>{modalDisplay}</>         
                 <>{screenTwoDisplay}</>
                 <>{screenThreeDisplay}</>
             </div>
