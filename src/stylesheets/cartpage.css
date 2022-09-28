@@ -1,7 +1,6 @@
 .cart-page {
     display: flex;
     background-color: var(--Color-Six); 
-    flex-direction: column;
 }
 .cart-page .checkout-box {     
     display: flex;
@@ -76,6 +75,10 @@
     flex-direction: column;
     row-gap: 1rem;
 }
+.cart-page .cart-item {
+    display: flex;
+    flex-direction: column;
+}
 .cart-page .cart-item .item-ctn {
     display: flex;
     color: var(--Color-Six);
@@ -107,6 +110,7 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     visibility: hidden;
+    width: fit-content;
 }
 .cart-page .cart-item .item-ctn .item-load-vis {
     animation-name: spin;
@@ -114,6 +118,7 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     visibility: visible;
+    width: fit-content;
 }
 @keyframes spin {
     from {transform: rotate(0deg);}
@@ -124,11 +129,38 @@
     background-color: transparent;
     border: none;
     padding: 0.5rem;
+    position: relative;
+    top: 2rem;
+    margin: 0rem;
+    align-self: flex-end;
 }
 .cart-page .cart-item .delete-item img {
     width: 1rem;
     height: 1rem;
-    position: relative;
-    left: 19rem;
-    bottom: 9rem;
+}
+@media all and (max-width: 768px) {
+    .cart-page {
+        padding-top: 4rem;
+        flex-direction: column;
+        row-gap: 4rem;
+    }
+    .cart-page .cart-item {
+        width: 60%;
+    }
+    .cart-page .cart-item .delete-item img {
+        left: unset;
+        top: unset;
+    }
+    .cart-page .cart-item .item-ctn {
+       width: 100%;
+       flex-direction: column;
+       align-items: center;
+       row-gap: 1rem;
+       padding: 0rem;
+       padding-top: 1rem;
+    }
+    .cart-page .checkout-box {
+       border-left: none;
+    }
+    
 }

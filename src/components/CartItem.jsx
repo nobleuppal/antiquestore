@@ -16,6 +16,7 @@ const CartItem = ({image, quantity, name, price, fileName, itemId, removeItem}) 
 
     return ( 
         <div className="cart-item">
+            <button onClick={() => handleClick(itemId)} className="delete-item"><img src={times} alt="times"/></button>
             <div className="item-ctn">
                 <img className="item-image" src={image} alt={fileName}/>
                 <div className="item-name">{name}</div>
@@ -23,7 +24,6 @@ const CartItem = ({image, quantity, name, price, fileName, itemId, removeItem}) 
                 <div className="item-quantity">x{quantity}</div>
                 <img className={spinner} src={loader} alt="loading-icon"/>
             </div>
-            <button onClick={() => handleClick(itemId)} className="delete-item"><img src={times} alt="times"/></button>
         </div>
      );
 }
