@@ -26,7 +26,6 @@
 }
 .nav-bar .right-side img {
     width: 2rem;
-    height: fit-content;
 }
 .nav-bar .right-side span {
     color: var(--Color-Eleven);
