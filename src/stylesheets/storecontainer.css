@@ -54,7 +54,6 @@
 }
 .store-container .home-header > div {
     text-align: left;
-    padding-left: 2rem;
 }
 .store-container .home-header p, .store-container .home-header h3 {
     align-self: flex-start;
@@ -104,7 +103,7 @@
         font-size: 3rem;
     }
     .store-container .pop-ctn {
-        width: 30rem;
+        width: 75%;
         height: 70rem;
         padding: 1rem;
         position: absolute;
@@ -132,7 +131,7 @@
         column-gap: 3rem;
     }
     .store-container .home-header .dummy-btn-ctn button:first-child, .store-container .home-header .dummy-btn-ctn button:last-child {
-        width: 15rem;
+        width: 40%;
         font-size: 2.5rem;
         height: 6rem;
         border-radius: 3rem;
@@ -151,9 +150,6 @@
         font-size: 3rem;
         margin-bottom: 2rem;
     }
-    .store-container .home-header > div {
-        padding: 1rem;
-    }
     .store-container .categories {
         flex-direction: column;
         align-content: center;
@@ -169,7 +165,6 @@
         row-gap: 2rem;
     }
     .store-container .categories .search-wrp input {
-        width: 30rem;
         height: 5rem;
         font-size: 2rem;
     }

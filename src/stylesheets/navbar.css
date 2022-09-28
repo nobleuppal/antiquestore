@@ -34,6 +34,7 @@
     border-radius: 1rem; 
     padding: 0rem 0.25rem;
     margin-bottom: 0rem;
+    font-size: 1rem;
 
 }
 @media all and (max-width: 786px) {
@@ -45,12 +46,15 @@
         width: 9rem;
         cursor: pointer;
     }
-    .nav-bar .right-side span {
-        font-size: 2rem;
-        padding: 0.25 0.75rem;
-    }
     .nav-bar .logo {
-        width: 24rem;
-        height: 8rem;
+        width: 12rem;
+        height: 4rem;
     }
+}
+@media all and (max-width: 375px) {
+    .nav-bar .right-side span {
+        font-size: 0.75rem;
+        padding: 0rem 0.25rem;
+    }
+  
 }

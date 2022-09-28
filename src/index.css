@@ -32,12 +32,19 @@ code {
 }
 button, select {
   cursor: pointer;
+  appearance: none;
 }
 button:hover {
   color: var(--Color-Eleven);
 }
 input:focus, select:focus {
   outline-width: 0;
+  appearance: none;
+}
+@media all and (max-width: 768px) {
+  * {
+    max-width: 100%;
+  }
 }
 
 
