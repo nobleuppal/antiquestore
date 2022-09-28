@@ -1,6 +1,7 @@
 .store-container {
     background-color: var(--Color-Ten);
     margin-top: 0rem;
+    width: 100%;
 }
 .store-container .categories {
     display: flex;

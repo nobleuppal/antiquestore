@@ -43,8 +43,6 @@ class StoreContainer extends React.Component {
     componentDidMount() {
         this.setState({loading: true});
         commerce.allDetails().then((res) => {
-            console.log(res);
-            console.log(res.response.ok);
             if(res && res.response.ok) {
                 this.setState({
                     details: res.details,

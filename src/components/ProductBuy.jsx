@@ -41,9 +41,9 @@ const ProductBuy = ({details, commerce, updateCartItems}) => {
             </div>
             <div className="item-info">
                 <div className="info-ctn">
-                    <p className="titles"><p>Name</p><div>{details.title}</div></p>
-                    <p className="titles"><p>Price</p><div>${details.price}</div></p>
-                    <p className="titles"><p>Description</p><div>{details.description.slice(3).slice(0, details.description.length-7)}</div></p>
+                    <div className="titles"><p>Name</p><div>{details.title}</div></div>
+                    <div className="titles"><p>Price</p><div>${details.price}</div></div>
+                    <div className="titles"><p>Description</p><div>{details.description.slice(3).slice(0, details.description.length-7)}</div></div>
                 </div>
                 <div className="item-quantity">
                     <div className="quantity-ctn">

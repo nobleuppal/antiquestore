@@ -27,7 +27,6 @@ const CartPage = ({commerce, updateCartItems, shippingClick}) => {
         setRemoving(true);
         commerce.deleteCart(itemId)
                 .then(res => {
-                        console.log(res);
                         setRemoving(false);
                         updateCartItems(res.json.cart.total_items);
                         setCartList(res.json.cart.line_items);

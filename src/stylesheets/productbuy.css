@@ -2,6 +2,7 @@
     width: 100vw;
     background-color: var(--Color-Six);
     display: flex;
+    padding-top: 4rem;
 }
 .product-buy .item-container {
     background-color: var(--Color-One);
@@ -84,7 +85,6 @@
     .product-buy {
         flex-direction: column;
         align-items: center;
-        padding-top: 4rem;
         row-gap: 4rem;
     }
     .product-buy .item-info {
