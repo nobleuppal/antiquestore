@@ -17,12 +17,14 @@
     display: flex;
 }
 .nav-bar .logo {
+    width: 12rem;
+    height: 4rem;
     margin-left: 2rem;
     color: var(--Color-Three);
 }
 .nav-bar img {
     width: 12rem;
-    height: 4rem;
+    height: 3rem;
 }
 .nav-bar .right-side img {
     width: 2rem;
@@ -33,11 +35,12 @@
     border-radius: 1rem; 
     padding: 0rem 0.25rem;
     margin-bottom: 0rem;
-    font-size: 1rem;
+    font-size: 0.75rem;
 }
-@media all and (max-width: 786px) {
+@media all and (max-width: 768px) {
     .nav-bar .right-side .hamburger {
         width: 4rem;
+        height: 4rem;
         cursor: pointer;
     }
     .nav-bar .logo {
@@ -45,7 +48,7 @@
         height: 4rem;
     }
     .nav-bar .right-side .shopping-cart {
-        height: 4rem;
+        height: 3rem;
         width: 4rem;
     }
 }
@@ -53,5 +56,9 @@
     .nav-bar .right-side span {
         font-size: 0.75rem;
         padding: 0rem 0.25rem;
-    }  
+    } 
+    .nav-bar .logo {
+        width: 9rem;
+        height: 3rem;
+    } 
 }

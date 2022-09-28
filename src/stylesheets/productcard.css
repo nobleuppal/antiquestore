@@ -3,7 +3,7 @@
     border-radius: 1rem;
     background-color: var(--Color-Nine);
     width: 20vw;
-    height: 14rem;
+    height: 17rem;
     padding: 1rem;
     cursor: pointer;
     color: var(--Color-Six);
@@ -43,7 +43,4 @@
     .product-card p {
         font-size: 75%;
     }
-}
-@media all and (max-width: 375px) {
-
 }

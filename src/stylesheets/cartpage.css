@@ -1,7 +1,7 @@
 .cart-page {
     display: flex;
     background-color: var(--Color-Six); 
-    height: 100vh;
+    flex-direction: column;
 }
 .cart-page .checkout-box {     
     display: flex;
@@ -129,6 +129,6 @@
     width: 1rem;
     height: 1rem;
     position: relative;
-    left: 19.5rem;
+    left: 19rem;
     bottom: 9rem;
 }
