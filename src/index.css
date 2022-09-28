@@ -32,7 +32,7 @@ code {
 }
 button, select {
   cursor: pointer;
-  appearance: none;
+  --webkit-appearance: none;
 }
 button:hover {
   color: var(--Color-Eleven);
