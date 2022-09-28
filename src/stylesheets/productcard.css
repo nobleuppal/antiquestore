@@ -38,10 +38,10 @@
         height: 75%;
     }
     .product-card div {
-        font-size: unset;
+        font-size: 75%;
     }
     .product-card p {
-        font-size: unset;
+        font-size: 75%;
     }
 }
 @media all and (max-width: 375px) {

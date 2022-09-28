@@ -37,12 +37,16 @@
 }
 @media all and (max-width: 786px) {
     .nav-bar .right-side .hamburger {
-        width: 9rem;
+        width: 4rem;
         cursor: pointer;
     }
-    .nav-bar .logo,  .nav-bar .right-side img {
+    .nav-bar .logo {
         width: 12rem;
         height: 4rem;
+    }
+    .nav-bar .right-side .shopping-cart {
+        height: 4rem;
+        width: 4rem;
     }
 }
 @media all and (max-width: 375px) {

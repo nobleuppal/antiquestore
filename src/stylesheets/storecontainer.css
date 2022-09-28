@@ -100,7 +100,7 @@
         row-gap: 4rem;
     }
     .store-container .pop-options button {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     .store-container .pop-ctn {
         width: 75%;
@@ -128,13 +128,16 @@
     }
     .store-container .home-header .dummy-btn-ctn {
         width: 40rem;
-        column-gap: 3rem;
+        column-gap: 1rem;
+    }
+    .store-container .home-header .slogan-ctn {
+        padding-left: 3rem;
     }
     .store-container .home-header .dummy-btn-ctn button:first-child, .store-container .home-header .dummy-btn-ctn button:last-child {
         width: 40%;
-        font-size: 2.5rem;
         height: 6rem;
         border-radius: 3rem;
+        font-size: 2rem;
     }
     .store-container .home-header {
         display: flex;
@@ -142,12 +145,12 @@
         padding-top: 5rem;
     }
     .store-container .home-header p {
-        font-size: 2rem;
         margin-bottom: 2rem;
+        font-size: 100%;
     }
     .store-container .home-header h3 {
+        font-size: 100%;
         font-weight: 500;
-        font-size: 3rem;
         margin-bottom: 2rem;
     }
     .store-container .categories {
@@ -178,6 +181,9 @@
 @media all and (max-width: 375px) {
     .store-container .product-ctn {
         grid-template-columns: repeat(1, 1fr);
+    }
+    .store-container .home-header .dummy-btn-ctn button:first-child, .store-container .home-header .dummy-btn-ctn button:last-child {
+        font-size: 1rem;
     }
    
 }

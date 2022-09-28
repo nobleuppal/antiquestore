@@ -11,7 +11,7 @@ const Navbar = ({cartItems, navBarMenu, cartClick}) => {
             <div className="right-side">
                 {navBarMenu}
                 <button onClick={cartClick} type="button">
-                    <img src={shoppingCart} alt="shopping-cart"/>
+                    <img className='shopping-cart' src={shoppingCart} alt="shopping-cart"/>
                     <span>{cartItems}</span>
                 </button>
             </div>           
