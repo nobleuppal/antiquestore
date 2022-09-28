@@ -34,17 +34,13 @@
     padding: 0rem 0.25rem;
     margin-bottom: 0rem;
     font-size: 1rem;
-
 }
 @media all and (max-width: 786px) {
-    .nav-bar .right-side img {
-        width: 7rem;
-    }
     .nav-bar .right-side .hamburger {
         width: 9rem;
         cursor: pointer;
     }
-    .nav-bar .logo {
+    .nav-bar .logo,  .nav-bar .right-side img {
         width: 12rem;
         height: 4rem;
     }
@@ -53,6 +49,5 @@
     .nav-bar .right-side span {
         font-size: 0.75rem;
         padding: 0rem 0.25rem;
-    }
-  
+    }  
 }
