@@ -13,6 +13,9 @@
     background-color: transparent;
     border: none;
 }
+.nav-bar .right-side button:last-child {
+    display: flex;
+}
 .nav-bar .logo {
     margin-left: 2rem;
     color: var(--Color-Three);
@@ -29,5 +32,25 @@
     color: var(--Color-Eleven);
     background-color: var(--Color-Seven);
     border-radius: 1rem; 
-    padding: 0rem 0.25rem
+    padding: 0rem 0.25rem;
+    margin-bottom: 0rem;
+
+}
+@media all and (max-width: 786px) {
+    .nav-bar .right-side img {
+        width: 7rem;
+        height: fit-content;
+    }
+    .nav-bar .right-side .hamburger {
+        width: 9rem;
+        cursor: pointer;
+    }
+    .nav-bar .right-side span {
+        font-size: 2rem;
+        padding: 0.25 0.75rem;
+    }
+    .nav-bar .logo {
+        width: 24rem;
+        height: 8rem;
+    }
 }

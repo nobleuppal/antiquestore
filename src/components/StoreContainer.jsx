@@ -74,7 +74,8 @@ class StoreContainer extends React.Component {
        this.setState({screenOne: 'productBuy'});
     }
 
-    toLogin = () => {
+    toLogIn = () => {
+        this.closeMenu();
         if (this.state.greeting.includes('Welcome')) {
             this.setState({modal: null});
         }
@@ -226,7 +227,7 @@ class StoreContainer extends React.Component {
           
         if(screenOne === 'homeHeader') {        
             screenOneDisplay = <div className="home-header">
-                                    <div>
+                                    <div className="slogan-ctn">
                                         <p>THESE ARE VINTAGE ITEMS</p>
                                         <h3>POSSESSED BY THE BIGGEST <br/> NAMES IN HISTORY</h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/> Fusce id est gravida</p>

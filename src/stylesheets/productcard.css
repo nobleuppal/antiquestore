@@ -31,7 +31,7 @@
 }
 @media all and (max-width: 768px) {
     .product-card {
-        width: 25rem;
+        width: 20rem;
         height: 25rem;
     }
     .product-card img {
@@ -43,5 +43,21 @@
     }
     .product-card p {
         font-size: 1rem;
+    }
+}
+@media all and (max-width: 375px) {
+    .product-card {
+        width: 34rem;
+        height: 34rem;
+    }
+    .product-card img {
+        width: 24rem;
+        height: 24rem;
+    }
+    .product-card div {
+        font-size: 3rem;
+    }
+    .product-card p {
+        font-size: 2rem;
     }
 }
