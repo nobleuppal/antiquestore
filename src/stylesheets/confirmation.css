@@ -1,0 +1,11 @@
+.confirmation {
+    padding-top: 10rem;
+    background-color: var(--Color-Six);
+}
+.confirmation img {
+    width: 10rem;
+    height: 10rem;
+}
+.confirmation div {
+    color: var(--Color-Four);
+}

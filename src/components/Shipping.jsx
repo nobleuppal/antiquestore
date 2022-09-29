@@ -273,7 +273,7 @@ const Shipping = ({commerce, confirmClick}) => {
                         <p className={postError}>Please enter a valid post/zip code</p>
                     </div>                  
                 </div>
-                
+
                 <select>
                         {countryArray.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}
                 </select> 
@@ -304,7 +304,7 @@ const Shipping = ({commerce, confirmClick}) => {
                 </div>
                 <div className="item-costs">
                     <div>Subtotal: ${rawTotal}</div>
-                    <div>Shipping: ${0}</div>
+                    <div>Shipping: ${shipping}</div>
                     <div>Tax: ${0}</div>
                     <div>Total: ${cartTotal}</div>
                     <button onClick={() => handleClick(lastDigits)}>Pay</button>
