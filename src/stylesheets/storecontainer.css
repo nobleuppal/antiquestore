@@ -23,8 +23,8 @@
     color: var(--Color-Three);
 }
 .store-container .categories .search-wrp {
-    margin-left: 6rem;
-    margin-right: 8rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
 }
 .store-container .categories .search-wrp input {
     border-radius: 0.25rem;
@@ -67,6 +67,9 @@
 .store-container .home-header h3 {
     font-weight: 500;
     font-size: 2rem;
+}
+.store-container .home-header .slogan-ctn {
+    padding-left: 1rem;
 }
 .store-container .home-header .dummy-btn-ctn {
     display: flex;
@@ -117,7 +120,7 @@
     }
     .store-container .pop-ctn {
         width: 75%;
-        height: 70rem;
+        height: 50rem;
         padding: 1rem;
         position: absolute;
         left: 0rem;
@@ -147,10 +150,12 @@
         padding-left: 3rem;
     }
     .store-container .home-header .dummy-btn-ctn button:first-child, .store-container .home-header .dummy-btn-ctn button:last-child {
-        width: 40%;
-        height: 6rem;
+        width: 30%;
+        height: 4rem;
         border-radius: 3rem;
         font-size: 2rem;
+        margin-left: 0rem;
+        font-size: 100%;
     }
     .store-container .home-header {
         display: flex;
@@ -190,14 +195,13 @@
         border-bottom: 1px solid var(--Color-Nine);      
     }
 }
-@media all and (max-width: 375px) {
+@media all and (max-width: 414px) {
     .store-container .product-ctn {
         grid-template-columns: repeat(1, 1fr);
     }
     .store-container .home-header .dummy-btn-ctn button:first-child, .store-container .home-header .dummy-btn-ctn button:last-child {
         font-size: 1rem;
-    }
-   
+    }   
 }
 
 

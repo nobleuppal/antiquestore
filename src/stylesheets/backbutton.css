@@ -1,10 +1,18 @@
+.back-button-ctn {
+    display: flex;
+}
 .back-button {
-    width: 15rem;
+    width: 20rem;
     height: 3rem;
     background-color: transparent;
     border: 1px solid var(--Color-Three);
-    position: absolute;
-    left: 2rem;
     margin-top: 2rem;
     cursor: pointer;
+    margin-left: 2rem;
+}
+@media all and (max-width: 414px) {
+    .back-button {
+        left: 3rem;
+        width: 75%;
+    }
 }

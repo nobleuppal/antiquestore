@@ -1,6 +1,6 @@
 .log-in {
     width: 40rem;
-    margin-top: 10rem;
+    margin-top: 8rem;
     height: 30rem; 
     z-index: 5; 
     position: fixed;
@@ -88,21 +88,34 @@
 
 @media all and (max-width: 768px) {
     .log-in {
-        width: 55rem;
+        width: 80%;
         padding: 2rem;
         height: 50rem;
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+    }
+    .log-in .to-log {
+        flex-direction: column;   
+        row-gap: 1rem;
     }
     .log-in .to-log button {
-        font-size: 2rem;   
+        font-size: 2rem;
+    }
+    .log-in .account-btns {
+        flex-direction: column;
+        row-gap: 0.5rem;
     }
     .log-in .account-btns label {
         font-size: 2rem;
+        margin: 0rem;
     }
     .log-in .account-btns input {
-        width: 30rem;
+        width: 100%;
         height: 3rem;
         -webkit-appearance: none;
         font-size: 2rem;
+        margin: 0rem;
     }
     .log-in .account-ctn {
         margin-top: 5rem;
@@ -123,9 +136,11 @@
         width: 3rem; 
         background-color: transparent;
         border: none; 
-        position: absolute;
-        right: 0;
-        top: 0;
+        position: relative;
+        left: 2rem;
+        bottom: 2rem;
         padding: 1rem;
+        margin: 0rem;
+        align-self:flex-end;
     }
 }

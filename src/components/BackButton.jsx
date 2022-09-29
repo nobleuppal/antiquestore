@@ -3,7 +3,9 @@ import '../stylesheets/backbutton.css';
 
 const BackButton = ({previous}) => {
     return ( 
-        <button className="back-button" onClick={previous}>Back</button>
+        <div className="back-button-ctn">
+            <button className="back-button" onClick={previous}>Back</button>
+        </div>
      );
 }
  
