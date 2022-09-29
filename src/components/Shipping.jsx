@@ -271,11 +271,12 @@ const Shipping = ({commerce, confirmClick}) => {
                     <div>
                         <input onBlur={e => postCheck(e)} maxLength={codeLength} type='text' id="post-zip" name="post-zip" placeholder='Post Code/Zip Code'/>
                         <p className={postError}>Please enter a valid post/zip code</p>
-                    </div>
-                    <select>
-                        {countryArray.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}
-                    </select>                   
+                    </div>                  
                 </div>
+                
+                <select>
+                        {countryArray.map(country => <option key={country.code} value={country.code}>{country.name}</option>)}
+                </select> 
 
                 <h2>Secure Payment</h2>
                 <div className="card-ctn">

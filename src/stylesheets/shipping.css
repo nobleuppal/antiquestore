@@ -1,8 +1,7 @@
 .shipping {
     display: flex;
     background-color: var(--Color-Six);
-    padding-top: 1rem;
-    height: 100vh;
+    padding-top: 4rem;
 }
 .card-logo {
     width: 3rem;
@@ -14,7 +13,7 @@
     display: flex;
     flex-direction: column;
     color: var(--Color-Three);
-    padding: 1rem 5rem;
+    padding: 1rem;
     margin-top: 0rem;
     margin-bottom: 1rem;
     font-size: 0.75rem;
@@ -39,7 +38,7 @@
 .shipping .checkout-item img {
     width: 7rem;
     height: 5rem;
-    border-radius: 0.1rem;
+    border-radius: 1rem;
     margin: 0rem;
 }
 .shipping .checkout-item .item-info {
@@ -81,9 +80,8 @@
     margin-top: 5rem;
 }
 .shipping .shipping-info {
-    width: 35rem;
-    padding: 0rem 15rem;
     margin-top: 0rem;
+    margin-left: 2rem;
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
@@ -143,7 +141,6 @@
     font-size: 0.75rem;
     padding: 0.5rem;
 }
-
 .shipping .shipping-info .first-error,
 .shipping .shipping-info .last-error, 
 .shipping .shipping-info .address-error, 
@@ -157,5 +154,46 @@
     background-color: var(--Color-Eight);
     color: var(--Color-Eleven);
     visibility: visible;
+}
+@media all and (max-width: 1024px) {
+    .name-ctn, .address-ctn, .location-ctn, .security-ctn {
+        flex-direction: column;
+        column-gap: none;
+        align-items: flex-start;
+    }
+}
+@media all and (max-width: 768px) {
+    .shipping {
+        flex-direction: column;
+        row-gap: 4rem;
+    }
+    .shipping .shipping-info {
+        margin: auto;
+    }
+    .shipping .checkout-box {
+        border-left: none;
+    }
+    .shipping .checkout-box button {
+        width: 20rem;
+    }
+    .name-ctn, .address-ctn, .location-ctn, .security-ctn {
+        flex-direction: row;
+    }
+    .shipping .checkout-item {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1rem;
+        background-color: var(--Color-One);
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+}
+@media all and (max-width: 520px) {
+    .name-ctn, .address-ctn, .location-ctn, .security-ctn {
+        flex-direction: column;
+        column-gap: none;
+        row-gap: 1rem;
+        align-items: flex-start;
+    }
 }
 
