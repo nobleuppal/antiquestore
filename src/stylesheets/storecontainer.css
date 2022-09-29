@@ -1,5 +1,5 @@
 .store-container {
-    background-color: var(--Color-Ten);
+    background-color: var(--Color-Six);
     margin-top: 0rem;
     width: 100%;
 }
@@ -7,8 +7,8 @@
     display: flex;
     padding-top: 5rem;
 }
-.store-container .categories div:first-child {
-    margin-left: 6rem;  
+.store-container .categories .products {
+    margin-left: 6rem;
 }
 .store-container .categories div:last-child {
     margin-right: 6rem;
@@ -23,8 +23,8 @@
     color: var(--Color-Three);
 }
 .store-container .categories .search-wrp {
+    margin-left: 6rem;
     margin-right: 8rem;
-    cursor: pointer;
 }
 .store-container .categories .search-wrp input {
     border-radius: 0.25rem;
@@ -53,6 +53,7 @@
 .store-container .home-header img {
     position: relative;
     top: 5rem;
+    width: 60%;
 }
 .store-container .home-header > div {
     text-align: left;
@@ -91,6 +92,16 @@
         grid-template-columns: repeat(3, 1fr);
         width: auto;
     }
+    .store-container .categories div:last-child {
+        margin-right: 4rem;
+    }
+    .store-container .categories .products {
+        margin-left: 4rem;
+    }
+    .store-container .categories .search-wrp {
+        margin-left: unset;
+        margin-right: unset;
+    }
 }
 @media all and (max-width: 768px) {
     .store-container .product-ctn {
@@ -110,7 +121,7 @@
         padding: 1rem;
         position: absolute;
         left: 0rem;
-        top: 10rem;
+        top: 6rem;
         margin: 0rem;
         z-index: 1;
         background-color: var(--Color-Ten);
@@ -126,7 +137,7 @@
         padding: 0.5rem;
     }
     #log-btn {
-        width: 12rem;
+        width: 10rem;
     }
     .store-container .home-header .dummy-btn-ctn {
         width: 40rem;

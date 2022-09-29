@@ -1,7 +1,7 @@
 .shipping {
     display: flex;
     background-color: var(--Color-Six);
-    padding-top: 4rem;
+    margin-top: 6rem;
 }
 .card-logo {
     width: 3rem;

@@ -68,12 +68,12 @@
 }
 .log-in .close-modal {
     cursor: pointer;
-    width: 1rem; 
+    width: 2rem; 
     background-color: transparent;
     border: none; 
     position: absolute;
-    right: 0;
-    padding: 1rem;
+    padding: 0.5rem;
+    left: 38rem;
 }
 .log-in .forgot {
     background-color: transparent;

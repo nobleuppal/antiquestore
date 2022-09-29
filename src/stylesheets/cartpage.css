@@ -1,6 +1,7 @@
 .cart-page {
     display: flex;
     background-color: var(--Color-Six); 
+    margin-top: 6rem;
 }
 .cart-page .checkout-box {     
     display: flex;

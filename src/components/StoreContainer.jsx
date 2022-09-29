@@ -13,6 +13,7 @@ import searchLogo from '../assets/search.svg';
 import flowersPhoto from '../assets/flowers.png';
 import hamburgerLogo from '../assets/hamburger.svg';
 import times from '../assets/times-circle-solid.svg';
+import BackButton from "./BackButton";
 const commerce = new CommerceService();
 
 
@@ -67,9 +68,9 @@ class StoreContainer extends React.Component {
 
     buyProduct = (details) => {
        this.productDetails = details; 
-       this.setState({screenTwo: null});
+       this.setState({screenOne: null});
        this.setState({screenThree: null});
-       this.setState({screenOne: 'productBuy'});
+       this.setState({screenTwo: 'productBuy'});
     }
 
     toLogIn = () => {
@@ -116,18 +117,18 @@ class StoreContainer extends React.Component {
     }
 
     cartClick = () => {
-        this.setState({screenTwo: null});
-        this.setState({screenOne: 'cartPage'});
+        this.setState({screenOne: null});
+        this.setState({screenTwo: 'cartPage'});
         this.setState({screenThree: null});        
     }
 
     shippingClick = () => {
-        this.setState({screenOne: 'shipping'});
+        this.setState({screenTwo: 'shipping'});
     }
 
     confirmClick = (lastDigits) => {
         this.lastDigits = lastDigits;
-        this.setState({screenOne: 'confirmation'});
+        this.setState({screenTwo: 'confirmation'});
     }
 
     handleWindowResize = () => {
@@ -205,7 +206,7 @@ class StoreContainer extends React.Component {
 
         if(screenTwo === 'productNav') {
             screenTwoDisplay =  <div className="categories">
-                                    <div>Products</div>
+                                    <div className="products">Products</div>
                                     <div>
                                         <div className="search-wrp">
                                             <input onChange={(e) => this.filterContainer(e)} type="text"/>
@@ -219,10 +220,22 @@ class StoreContainer extends React.Component {
                                     </div>        
                                 </div>
         }
-        else if (screenTwo === null) {
-            screenTwoDisplay = null;
+        else if(screenTwo === 'productBuy') {
+            screenTwoDisplay = <ProductBuy updateCartItems={this.updateCartItems} commerce={commerce} changeQuantity={this.changeQuantity}  details={this.productDetails}/>
+            screenOneDisplay= <BackButton previous={this.toHome}/>
         }
-          
+        else if(screenTwo === 'cartPage') {
+            screenTwoDisplay = <CartPage shippingClick={this.shippingClick} updateCartItems={this.updateCartItems} commerce={commerce}/>
+            screenOneDisplay= <BackButton previous={this.toHome}/>
+        }
+        else if(screenTwo === 'shipping') {
+            screenTwoDisplay = <Shipping confirmClick={this.confirmClick} commerce={commerce}/>
+            screenOneDisplay= <BackButton previous={this.cartClick}/>
+        }
+        else if (screenTwo === 'confirmation') {
+            screenTwoDisplay = <Confirmation lastDigits={this.lastDigits}/>
+        }
+        
         if(screenOne === 'homeHeader') {        
             screenOneDisplay = <div className="home-header">
                                     <div className="slogan-ctn">
@@ -237,18 +250,7 @@ class StoreContainer extends React.Component {
                                     <img src={flowersPhoto} alt="antique-stock"/>
                                 </div>
         }
-        else if(screenOne === 'productBuy') {
-            screenOneDisplay = <ProductBuy updateCartItems={this.updateCartItems} commerce={commerce} changeQuantity={this.changeQuantity}  details={this.productDetails}/>
-        }
-        else if(screenOne === 'cartPage') {
-            screenOneDisplay = <CartPage shippingClick={this.shippingClick} updateCartItems={this.updateCartItems} commerce={commerce}/>
-        }
-        else if(screenOne === 'shipping') {
-            screenOneDisplay = <Shipping confirmClick={this.confirmClick} commerce={commerce}/>
-        }
-        else if (screenOne === 'confirmation') {
-            screenOneDisplay = <Confirmation lastDigits={this.lastDigits}/>
-        }
+      
 
         if(modal === 'logIn') {
             modalDisplay = <LogIn match={this.state.match} updateAccounts={this.updateAccounts} checkAccounts={this.checkAccounts} toLogIn={this.toLogIn}/>

@@ -1,0 +1,10 @@
+.back-button {
+    width: 15rem;
+    height: 3rem;
+    background-color: transparent;
+    border: 1px solid var(--Color-Three);
+    position: absolute;
+    left: 2rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}

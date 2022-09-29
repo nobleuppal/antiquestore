@@ -2,7 +2,7 @@
     width: 100vw;
     background-color: var(--Color-Six);
     display: flex;
-    padding-top: 4rem;
+    margin-top: 6rem;
 }
 .product-buy .item-container {
     background-color: var(--Color-One);
