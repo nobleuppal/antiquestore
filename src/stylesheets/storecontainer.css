@@ -198,9 +198,12 @@
 @media all and (max-width: 414px) {
     .store-container .product-ctn {
         grid-template-columns: repeat(1, 1fr);
+        padding-bottom: 1rem;
     }
     .store-container .home-header .dummy-btn-ctn button:first-child, .store-container .home-header .dummy-btn-ctn button:last-child {
         font-size: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }   
 }
 

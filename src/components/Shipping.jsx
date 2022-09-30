@@ -303,10 +303,10 @@ const Shipping = ({commerce, confirmClick}) => {
                     }
                 </div>
                 <div className="item-costs">
-                    <div>Subtotal: ${rawTotal}</div>
-                    <div>Shipping: ${shipping}</div>
-                    <div>Tax: ${0}</div>
-                    <div>Total: ${cartTotal}</div>
+                    <div><span>Subtotal: </span><span> ${rawTotal}</span></div>
+                    <div><span>Shipping:</span><span>${shipping}</span></div>
+                    <div><span>Tax:</span><span> ${0}</span></div>
+                    <div><span>Total:</span><span> ${cartTotal}</span></div>
                     <button onClick={() => handleClick(lastDigits)}>Pay</button>
                 </div>
             </div>

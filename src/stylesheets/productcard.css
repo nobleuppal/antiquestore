@@ -44,3 +44,9 @@
         font-size: 75%;
     }
 }
+@media all and (max-width: 414px) {
+    .product-card {
+        width: 70%;
+        height: 18rem;
+    }
+}

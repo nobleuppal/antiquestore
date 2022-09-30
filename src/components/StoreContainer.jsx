@@ -209,7 +209,7 @@ class StoreContainer extends React.Component {
                                     <div className="products">Products</div>
                                     <div>
                                         <div className="search-wrp">
-                                            <input onChange={(e) => this.filterContainer(e)} type="text"/>
+                                            <input placeholder="Search Items" onChange={(e) => this.filterContainer(e)} type="text"/>
                                         </div> 
                                         <button type="button" value="all" onClick={(e) => this.filterContainer(e)}>All</button>
                                         <button type="button" value="Watches" onClick={(e) => this.filterContainer(e)}>Watches</button>
