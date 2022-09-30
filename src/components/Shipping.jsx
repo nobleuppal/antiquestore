@@ -241,7 +241,7 @@ const Shipping = ({commerce, confirmClick}) => {
 
     return ( 
         <div className="shipping">
-            <form className="shipping-info">
+            <form className="shipping-info" autoComplete="off">
                 <h2>Shipping Address</h2>
                 <div className="name-ctn">
                     <div>
@@ -303,11 +303,15 @@ const Shipping = ({commerce, confirmClick}) => {
                     }
                 </div>
                 <div className="item-costs">
-                    <div><span>Subtotal: </span><span> ${rawTotal}</span></div>
-                    <div><span>Shipping:</span><span>${shipping}</span></div>
-                    <div><span>Tax:</span><span> ${0}</span></div>
-                    <div><span>Total:</span><span> ${cartTotal}</span></div>
-                    <button onClick={() => handleClick(lastDigits)}>Pay</button>
+                    <div className="checkout-costs">
+                        <div className="cost"><span>Subtotal: </span><span> ${rawTotal}</span></div>
+                        <div className="cost"><span>Shipping:</span><span>${shipping}</span></div>
+                        <div className="cost"><span>Tax:</span><span> ${0}</span></div>
+                    </div>
+                    <div className="total-checkout">
+                        <div className="cost"><span>Total:</span><span> ${cartTotal}</span></div>
+                        <button onClick={() => handleClick(lastDigits)}>Pay</button>
+                    </div>
                 </div>
             </div>
         </div>

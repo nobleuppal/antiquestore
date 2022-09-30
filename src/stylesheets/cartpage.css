@@ -169,5 +169,8 @@
     .cart-page .checkout-box {
        border-left: none;
     }
+    .cart-page .total-checkout button {
+        width: 20rem;
+    }
     
 }

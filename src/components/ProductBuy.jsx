@@ -18,7 +18,7 @@ const ProductBuy = ({details, commerce, updateCartItems}) => {
     }
 
     const addToCart = () => {
-        if(quantity + itemQuantity <= details.inventory) {
+        if(quantity + itemQuantity <= details.inventory && (quantity !== 0)) {
             setLoad('Processing...');
             commerce.addCart(details.Id, quantity)
                     .then(res => {
@@ -28,6 +28,9 @@ const ProductBuy = ({details, commerce, updateCartItems}) => {
                     })
                     .then(setQuantity(0));
             setErrorMessage(null);
+        }
+        else if (quantity === 0) {
+            setErrorMessage('No Quantity Selected');
         }
         else {
             setErrorMessage('Quantity Exceeds Inventory');
